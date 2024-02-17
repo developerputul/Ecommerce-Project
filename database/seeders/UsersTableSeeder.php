@@ -43,6 +43,14 @@ class UsersTableSeeder extends Seeder
                 'role'         => 'user',
                 'status'       => 'active',
             ],
+            [
+                'name'         => 'Tutul',
+                'username'     => 'tutule',
+                'email'        => 'tutul@gmail.com',
+                'password'     => Hash::make('tutul_sen'),
+                'role'         => 'user',
+                'status'       => 'inactive',
+            ],
         ]);
     }
 }
