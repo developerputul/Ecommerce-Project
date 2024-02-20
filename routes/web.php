@@ -17,7 +17,7 @@ use App\Http\Controllers\VendorController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 
@@ -32,8 +32,6 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
 });
-
-
 
 //Vendor Dashboard routes
 Route::middleware(['auth', 'role:vendor'])->group(function(){

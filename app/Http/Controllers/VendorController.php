@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class VendorController extends Controller
 {
     public function VendorDashboard(){
+        // return view('vendor.vendor_dashboard');
         return view('vendor.index');
     } // end method
     public function VendorLogin(){

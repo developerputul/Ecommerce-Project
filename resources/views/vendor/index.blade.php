@@ -1,5 +1,4 @@
 
-
 @extends('vendor.vendor_dashboard')
 @section('vendor')
 
