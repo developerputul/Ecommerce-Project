@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="{{asset ('adminbackend/assets/css/header-colors.css')}}" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-	<title>Vendor Dashboard</title>
+	<title>Vendor  Dashboard</title>
 </head>
 
 <body>
@@ -57,7 +57,7 @@
 	<!--end wrapper-->
 
 	<!--start switcher-->
-{{-- 
+{{--
 	<div class="switcher-wrapper">
 		<div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
 		</div>

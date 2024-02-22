@@ -23,6 +23,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
+    Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
 }); //group middleware end
 
 
@@ -54,7 +55,10 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 
 //Vendor Dashboard routes
 Route::middleware(['auth', 'role:vendor'])->group(function(){
+
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
+    Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
+
     Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
     Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
 
