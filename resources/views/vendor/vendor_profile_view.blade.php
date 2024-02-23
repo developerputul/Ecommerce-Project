@@ -52,6 +52,7 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
+                            
                             <form method="post" action="{{ route('vendor.profile.store') }}" enctype="multipart/form-data" >
                             @csrf
                             <div class="row mb-3">
@@ -64,10 +65,10 @@
                             </div>
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Shop Name</h6>
+                                    <h6 class="mb-0">Full Name</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                                    <input type="text" name="name" class="form-control" value="{{$vendorData->name}}" />
+                                    <input type="text" name="name" class="form-control" value="{{ $vendorData->name }}" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -135,7 +136,6 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <img id="showImage" src="{{ (!empty($vendorData->photo)) ? url('upload/vendor_image/'. $vendorData->photo): url('upload/no_image.jpg')}}" alt="Vendor" style="width:100px; height:100px;">
-                                    {{-- <img id="showImage" class="rounded avatar-lg" alt="Admin" src="{{ asset($adminData->photo) ?? asset('upload/no_image.jpg')}}" data-holder-rendered="true" style="width: 100px; height:100px;"> --}}
                                 </div>
                             </div>
 

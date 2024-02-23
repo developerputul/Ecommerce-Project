@@ -19,6 +19,7 @@
               <div class="card-body">
                  <form method="post" action="{{ route('update.password') }}" >
                         @csrf
+
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
                        {{session('status')}}
@@ -27,7 +28,6 @@
                     <div class="alert alert-danger" role="alert">
                       {{session('error')}}
                     </div>
-
                     @endif
 
                     <div class="row mb-3">
