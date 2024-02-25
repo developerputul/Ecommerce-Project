@@ -27,7 +27,7 @@ class BrandController extends Controller
         $image->move(public_path('upload/brand_image'), $name_gen);
         $save_url = 'upload/brand_image/'.$name_gen;
 
-        Brand::create([
+        Brand::insert([
             'brand_name' => $request->brand_name,
             'brand_slug' => strtolower(str_replace(' ', '-',$request->brand_name)),
             'brand_image' => $save_url,
@@ -97,7 +97,6 @@ class BrandController extends Controller
         $brand = Brand::findOrFail($id);
         $image = $brand->brand_image;
         unlink($image);
-
         Brand::findOrFail($id)->delete();
 
         $notification = array(

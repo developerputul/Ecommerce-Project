@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +76,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
 
-Route::middleware(['auth', 'role:admin'])->group(function(){
+ Route::middleware(['auth', 'role:admin'])->group(function(){
     //All Brand Route
 Route::controller(BrandController::class)->group(function(){
     Route::get('all/brand', 'AllBrand')->name('all.brand');
@@ -88,6 +89,20 @@ Route::controller(BrandController::class)->group(function(){
     Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
 
 });
+
+    //All category Route
+Route::controller(CategoryController::class)->group(function(){
+    Route::get('all/category', 'AllCategory')->name('all.category');
+    Route::get('add/category', 'AddCategory')->name('add.category');
+
+    Route::post('store/category', 'StoreCategory')->name('store.category');
+    Route::get('edit/category/{id}', 'EditCategory')->name('edit.category');
+
+    Route::post('update/category', 'UpdateCategory')->name('update.category');
+    Route::get('delete/category/{id}', 'DeleteCategory')->name('delete.category');
+
+});
+
 
 }); // end middleware
 
