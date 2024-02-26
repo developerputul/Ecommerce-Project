@@ -28,6 +28,7 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'category_slug' => strtolower(str_replace(' ', '-',$request->category_name)),
             'category_image' => $save_url,
+
         ]);
 
        $notification = array(
@@ -92,10 +93,13 @@ class CategoryController extends Controller
     } // End Method
 
     public function DeleteCategory($id){
+
         $category = Category::findOrFail($id);
         $image = $category->category_image;
-        unlink($image);
-        Category::findOrFail($id)->delete();
+        if($image){
+            unlink($image);
+        }
+        $category->delete();
 
         $notification = array(
             'message' => 'Category Deleted Successfully',

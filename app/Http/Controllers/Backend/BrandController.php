@@ -96,8 +96,10 @@ class BrandController extends Controller
     public function DeleteBrand($id){
         $brand = Brand::findOrFail($id);
         $image = $brand->brand_image;
-        unlink($image);
-        Brand::findOrFail($id)->delete();
+        if($image){
+            unlink($image);
+        }
+        $brand->delete();
 
         $notification = array(
             'message' => 'Brand Deleted Successfully',
