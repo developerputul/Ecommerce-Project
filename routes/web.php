@@ -7,6 +7,7 @@ use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 
 /*
@@ -44,8 +45,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
 
 //admin Dashboard routes
 Route::middleware(['auth', 'role:admin'])->group(function(){
@@ -90,7 +89,6 @@ Route::controller(BrandController::class)->group(function(){
     Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
 
 });
-
     //All category Route
  Route::controller(CategoryController::class)->group(function(){
     Route::get('all/category', 'AllCategory')->name('all.category');
@@ -113,7 +111,16 @@ Route::controller(BrandController::class)->group(function(){
 
     Route::post('update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
     Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
+});
+    //All Product Route
+ Route::controller(ProductController::class)->group(function(){
+    Route::get('all/product', 'AllProduct')->name('all.product');
+    Route::get('add/product', 'AddProduct')->name('add.product');
 
+    // Route::post('store/subcategory', 'StoreSubCategory')->name('store.subcategory');
+    // Route::get('edit/subcategory/{id}', 'EditSubCategory')->name('edit.subcategory');
+    // Route::post('update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
+    // Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
 });
 
 
