@@ -18,6 +18,9 @@ class ProductController extends Controller
     } // end method
 
     public function AddProduct(){
-        return view('backend.product.product_add');
+       $brands = Brand::latest()->get();
+       $categories = Category::latest()->get();
+       $subcategory = SubCategory::latest()->get();
+        return view('backend.product.product_add', compact('brands', 'categories', 'subcategory'));
     } // end method
 }
