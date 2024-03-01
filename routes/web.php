@@ -111,6 +111,8 @@ Route::controller(BrandController::class)->group(function(){
 
     Route::post('update/subcategory', 'UpdateSubCategory')->name('update.subcategory');
     Route::get('delete/subcategory/{id}', 'DeleteSubCategory')->name('delete.subcategory');
+
+    Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
 });
     //All Product Route
  Route::controller(ProductController::class)->group(function(){

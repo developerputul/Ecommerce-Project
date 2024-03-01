@@ -23,12 +23,15 @@
       <div class="card-body p-4">
           <h5 class="card-title">Add New Product</h5>
           <hr/>
+
+          <form id="myForm" method="post" action="{{ route('store.category') }}" enctype="multipart/form-data" >
+            @csrf
            <div class="form-body mt-4">
             <div class="row">
                <div class="col-lg-8">
                <div class="border border-3 p-4 rounded">
 
-                 <div class="mb-3">
+                 <div class="form-group mb-3">
                     <label for="inputProductTitle" class="form-label">Product Name</label>
                     <input type="text" name="product_name" class="form-control" id="inputProductTitle" placeholder="Enter product title">
                   </div>
@@ -171,7 +174,7 @@
                       <hr>
                       <div class="col-12">
                           <div class="d-grid">
-                             <button type="button" class="btn btn-primary">Save Product</button>
+                            <input type="Submit" class="btn btn-primary px-4" value="Save Changes" />
                           </div>
                       </div>
                   </div>
@@ -180,9 +183,95 @@
            </div><!--end row-->
         </div>
       </div>
+
+    </form>
+
   </div>
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('#myForm').validate({
+            rules: {
+                product_name: {
+                    required : true,
+                },
+                short_desc: {
+                    required : true,
+                },
+                product_thambnail: {
+                    required : true,
+                },
+                multi_image: {
+                    required : true,
+                },
+                selling_price: {
+                    required : true,
+                },
+                product_code: {
+                    required : true,
+                },
+                product_qty: {
+                    required : true,
+                },
+                brand_id: {
+                    required : true,
+                },
+                category_id: {
+                    required : true,
+                },
+                subcategory_id: {
+                    required : true,
+                },
+            },
+            messages :{
+                product_name: {
+                    required : 'Please Enter Product Name',
+                },
+                short_desc: {
+                    required : 'Please Enter Short desc',
+                },
+                product_thambnail: {
+                    required : 'Please Select  product Thambnail',
+                },
+                multi_image: {
+                    required : 'Please Select multi Image',
+                },
+                selling_price: {
+                    required : 'Please Enter Sellers Price',
+                },
+                product_code: {
+                    required : 'Please Enter Product Code',
+                },
+                product_qty: {
+                    required : 'Please Enter product Quantity',
+                },
+                brand_id: {
+                    required : 'Please Enter Brand ID',
+                },
+                category_id: {
+                    required : 'Please Enter Category ID',
+                },
+                subcategory_id: {
+                    required : 'Please Enter SubCategory ID',
+                },
+            },
+            errorElement : 'span',
+            errorPlacement: function (error,element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight : function(element, errorClass, validClass){
+                $(element).addClass('is-invalid');
+            },
+            unhighlight : function(element, errorClass, validClass){
+                $(element).removeClass('is-invalid');
+            },
+        });
+    });
+
+</script>
 
 <script type="text/javascript">
         function mainThamUrl(input){
@@ -226,7 +315,7 @@
 
     </script>
 
-    <option value="{{$category->id}}">{{$category->category_name}}</option>
+    {{-- <option value="{{$category->id}}">{{$category->category_name}}</option> --}}
   <script class="text/javascript">
     $(document).ready (function(){
         $('select[name="category_id"]').on('change', function(){
@@ -236,17 +325,19 @@
                     url: "{{url ('/subcategory/ajax') }}/"+category_id,
                     type: "GET",
                     dataType: 'json',
-                    success::function(data){
+                    success:function(data){
                         $('select[ name="subcategory_id"]').html('');
                         var d = $('select[ name="subcategory_id]').empty();
                         $.each(data, function(key,value){
-                            $('select[ name="subcategory_id"]').append('<option>')
-                        })
-                    }
-                })
+                            $('select[ name="subcategory_id"]').append('<option value="'+ value.id +'">'+ value.subcategory_name + '</option>');
+                        });
+                    },
+                });
+            } else{
+                alert('danger');
             }
-        })
-    })
+        });
+    });
 
 </script>
 
