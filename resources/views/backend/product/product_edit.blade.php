@@ -24,8 +24,10 @@
           <h5 class="card-title">EditProduct</h5>
           <hr/>
 
-          <form id="myForm" method="post" action="{{ route('store.product') }}" enctype="multipart/form-data" >
+          <form id="myForm" method="post" action="{{ route('update.product') }}">
             @csrf
+
+            <input type="hidden" name="id" value="{{ $products->id}}">
            <div class="form-body mt-4">
             <div class="row">
                <div class="col-lg-8">
@@ -66,22 +68,6 @@
                                                 {!! $products->long_desc !!}
                                         </textarea>
                   </div>
-
-{{--
-                 <div class="form-group mb-3">
-                    <label for="inputProductTitle" class="form-label">Main Thumbnail</label>
-                    <input name="product_thumbnail" class="form-control" type="file" id="formFile" onchange="mainThamUrl(this)">
-
-                    <img src="" id="mainThmb" />
-                  </div>
-
-                  <div class="form-group mb-3">
-                    <label for="inputProductTitle" class="form-label">Multiple Image</label>
-                    <input class="form-control" name="multi_image[]" type="file" id="multiImage" multiple="">
-                    <div class="row" id="preview_image"></div>
-                  </div> --}}
-
-
 
                 </div>
               </div>
@@ -138,17 +124,6 @@
                             @endforeach
                           </select>
                       </div>
-{{--
-                      <div class="col-12">
-                        <label for="inputCollection" class="form-label">Select Vendor</label>
-                        <select name="vendor_id" class="form-select" id="inputCollection">
-                            <option></option>
-                            @foreach ( as )
-                            <option value="1">One</option>
-                            @endforeach
-                          </select>
-                      </div> --}}
-
 
             <div class="col-12">
             <div class="row g-3">
@@ -192,13 +167,40 @@
 </div><!--end row-->
 </div>
 </div>
-
     </form>
-
   </div>
-
-
 </div>
+
+<!--main Image thumbnail -->
+<div class="page-content">
+    <h6 class="mb-0 text-uppercase">Update main Image Thambnail</h6>
+    <hr>
+    <div class="card">
+        <form method="post" action="{{ route('update.product.thambnail') }}" enctype="multipart/form-data">
+            @csrf
+
+            <input type="hidden" name="id" value="{{ $products->id}}">
+            <input type="hidden" name="old_image" value="{{ $products->product_thumbnail}}">
+
+           <div class="card-body">
+             <div class="mb-3">
+                <label for="formFile" class="form-label">Choose Thambnail Image</label>
+                <input name="product_thumbnail" class="form-control" type="file" id="formFile">
+            </div>
+
+             <div class="mb-3">
+                <label for="formFile" class="form-label"></label>
+              <img src="{{ asset($products->product_thumbnail)}}" style="width: 100px; height:100px">
+            </div>
+            <input type="Submit" class="btn btn-primary px-4" value="Save Changes" />
+           </div>
+
+        </form>
+    </div>
+</div>
+<!--end main Image thumbnail -->
+
+
 
 <script type="text/javascript">
     $(document).ready(function (){

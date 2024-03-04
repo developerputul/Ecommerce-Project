@@ -95,4 +95,76 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
          return view('backend.product.product_edit', compact('brands', 'categories', 'subcategory', 'products'));
     } // end method
+
+
+    public function UpdateProduct(Request $request){
+        $product_id = $request->id;
+
+                 Product::findOrFail($product_id)->update([
+
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+
+            'product_name' => $request->product_name,
+            'product_slug' =>strtolower(str_replace(' ', '_', $request->product_name)),
+            'product_code' => $request->product_code,
+
+            'product_qty' => $request->product_qty,
+            'product_tags' => $request->product_tags,
+            'product_size' => $request->product_size,
+
+            'product_color' => $request->product_color,
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
+
+            'hot_deals' => $request->hot_deals,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+            'special_deals' => $request->special_deals,
+
+
+            'status' =>1,
+            'created_at' =>Carbon::now(),
+
+        ]);
+        $notification = array(
+            'message' => 'Product Updated Without Image Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.product')->with($notification);
+
+
+
+    } // end method UpdateProduct
+
+    public function UpdateProductThambnail(Request $request){
+        $product_id = $request->id;
+        $oldImage = $request->old_image;
+
+        $image = $request->file('product_thumbnail');
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('upload/products/thumbnail/'), $name_gen);
+        $save_url = 'upload/products/thumbnail/'.$name_gen;
+
+        if(file_exists($oldImage)){
+            unlink($oldImage);
+        }
+
+        Product::findOrFail($product_id )->update([
+            'product_thumbnail' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Product Image Thambnail Updated  Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method UpdateProduct
+
 }
