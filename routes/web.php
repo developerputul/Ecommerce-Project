@@ -123,6 +123,7 @@ Route::controller(BrandController::class)->group(function(){
     Route::get('edit/product/{id}', 'EditProduct')->name('edit.product');
     Route::post('update/product', 'UpdateProduct')->name('update.product');
     Route::post('update/product/thambnail', 'UpdateProductThambnail')->name('update.product.thambnail');
+    Route::post('update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
 
 
 

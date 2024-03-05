@@ -106,7 +106,7 @@ class CategoryController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with($notification);
+        return redirect()->back()->with('success', 'Category Deleted successfully');
 
     } // End Method
 }

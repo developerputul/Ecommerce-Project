@@ -68,7 +68,7 @@ class ProductController extends Controller
             $make_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             $image->move(public_path('upload/products/multi_image/'), $make_name);
 
-            $uploadPath = public_path('upload/products/multi_image'. $make_name);
+            $uploadPath = 'upload/products/multi_image/'. $make_name;
             // public_path('upload/products/multi_image'.$make_name);
 
             MultiImage::insert([
@@ -89,11 +89,12 @@ class ProductController extends Controller
     } // end method
 
     public function EditProduct($id){
+        $multiImages = MultiImage::where('product_id', $id)->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $subcategory = SubCategory::latest()->get();
         $products = Product::findOrFail($id);
-         return view('backend.product.product_edit', compact('brands', 'categories', 'subcategory', 'products'));
+         return view('backend.product.product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multiImages'));
     } // end method
 
 
@@ -149,7 +150,7 @@ class ProductController extends Controller
         $image = $request->file('product_thumbnail');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
         $image->move(public_path('upload/products/thumbnail/'), $name_gen);
-        $save_url = 'upload/products/thumbnail/'.$name_gen;
+        $save_url = '/upload/products/thumbnail/'.$name_gen;
 
         if(file_exists($oldImage)){
             unlink($oldImage);
@@ -166,5 +167,31 @@ class ProductController extends Controller
 
         return redirect()->back()->with($notification);
     } // end method UpdateProduct
+
+    //multi Image
+    public function UpdateProductMultiimage(Request $request){
+          $images = $request->multi_image;
+
+          foreach($images as $id => $image){
+            $imageDelete = MultiImage::findOrfail($id);
+            unlink($imageDelete->photo_name);
+
+            $make_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            $image->move(public_path('upload/products/multi_image/'), $make_name);
+
+            $uploadPath = 'upload/products/multi_image/'. $make_name;
+
+            MultiImage::where('id', $id)->update([
+              'photo_name' => $uploadPath,
+              'updated_at' => Carbon::now(),
+            ]);
+          } // end foreach
+          $notification = array(
+            'message' => 'Product Mult Image Updated  Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    } // end method
 
 }
