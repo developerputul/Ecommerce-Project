@@ -34,9 +34,9 @@
                                     <select name="category_id" class="form-select mb-3" aria-label="Default select example">
                                         <option selected disabled value="">Open this select menu</option>
 
-                                        @foreach ($subcategories as $category)
-                                          <option value="{{ $category->id }}">{{$category->category_name}}</option>
-                                        @endforeach
+                                        @foreach ($categories as $category)
+                                          <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                          @endforeach
 
                                     </select>
                                 </div>

@@ -228,7 +228,7 @@
                     <td>
 
                     <input type="Submit" class="btn btn-primary px-4" value="Update Image" />
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('product.multiimage.delete', $image->id)}}" class="btn btn-danger" id="delete">Delete</a>
                     </td>
                 </tr>
              @endforeach

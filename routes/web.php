@@ -114,7 +114,7 @@ Route::controller(BrandController::class)->group(function(){
 
     Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
 });
-    //All Product Route
+    //All Product Manage Route
  Route::controller(ProductController::class)->group(function(){
     Route::get('all/product', 'AllProduct')->name('all.product');
     Route::get('add/product', 'AddProduct')->name('add.product');
@@ -124,6 +124,11 @@ Route::controller(BrandController::class)->group(function(){
     Route::post('update/product', 'UpdateProduct')->name('update.product');
     Route::post('update/product/thambnail', 'UpdateProductThambnail')->name('update.product.thambnail');
     Route::post('update/product/multiimage', 'UpdateProductMultiimage')->name('update.product.multiimage');
+    Route::get('product/multiimage/delete/{id}', 'MultiImageDelete')->name('product.multiimage.delete');
+
+    Route::get('product/inactive/{id}', 'ProductInactive')->name('product.inactive');
+    Route::get('product/active/{id}', 'ProductActive')->name('product.active');
+    Route::get('delete/product/{id}', 'ProductDelete')->name('delete.product');
 
 
 

@@ -16,8 +16,8 @@ class SubCategoryController extends Controller
     } // end method
 
     public function AddSubCategory(){
-        $subcategories =Category::orderBy('category_name', 'ASC')->get();
-        return view('backend.subcategory.subcategory_add', compact('subcategories'));
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        return view('backend.subcategory.subcategory_add', compact('categories'));
     } // end method
 
     public function StoreSubCategory(Request $request){
