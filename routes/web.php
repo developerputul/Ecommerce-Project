@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,15 +72,26 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 
+
+      //Vendor add Product All routes
+  Route::controller(VendorProductController::class)->group(function(){
+    Route::get('/vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
+
+});
+
 });
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
+
 
 
  Route::middleware(['auth', 'role:admin'])->group(function(){
     //All Brand Route
-Route::controller(BrandController::class)->group(function(){
+ Route::controller(BrandController::class)->group(function(){
     Route::get('all/brand', 'AllBrand')->name('all.brand');
     Route::get('add/brand', 'AddBrand')->name('add.brand');
 
@@ -89,6 +102,8 @@ Route::controller(BrandController::class)->group(function(){
     Route::get('delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
 
 });
+
+
     //All category Route
  Route::controller(CategoryController::class)->group(function(){
     Route::get('all/category', 'AllCategory')->name('all.category');
