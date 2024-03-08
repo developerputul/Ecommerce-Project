@@ -116,6 +116,15 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     Route::get('delete/category/{id}', 'DeleteCategory')->name('delete.category');
 
 });
+
+    //Vendor active and inactive all Route
+ Route::controller(AdminController::class)->group(function(){
+
+    Route::get('inactive/vendor', 'InactiveVendor')->name('inactive.vendor');
+    Route::get('active/vendor', 'ActiveVendor')->name('active.vendor');
+
+});
+
     //All Subcategory Route
  Route::controller(SubCategoryController::class)->group(function(){
     Route::get('all/subcategory', 'AllSubCategory')->name('all.subcategory');
