@@ -123,6 +123,12 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     Route::get('inactive/vendor', 'InactiveVendor')->name('inactive.vendor');
     Route::get('active/vendor', 'ActiveVendor')->name('active.vendor');
 
+    Route::get('inactive/vendor/details{id}', 'InactiveVendorDetails')->name('inactive.vendor.details');
+    Route::post('active/vendor/approve', 'ActiveVendorApprove')->name('active.vendor.approve');
+
+    Route::get('active/vendor/details{id}', 'activeVendorDetails')->name('active.vendor.details');
+    Route::post('inactive/vendor/approve', 'InactiveVendorApprove')->name('inactive.vendor.approve');
+
 });
 
     //All Subcategory Route

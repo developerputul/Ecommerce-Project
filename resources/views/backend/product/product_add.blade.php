@@ -131,16 +131,17 @@
 
                           </select>
                       </div>
-{{-- 
+
                       <div class="col-12">
                         <label for="inputCollection" class="form-label">Select Vendor</label>
                         <select name="vendor_id" class="form-select" id="inputCollection">
-                            <option></option>
-                            @foreach ( as )
-                            <option value="1">One</option>
+                            <option value="" selected>Select Vendor</option>
+
+                            @foreach ($vendors as $vendor)
+                            <option value="{{$vendor->id}}">{{$vendor->name}}</option>
                             @endforeach
                           </select>
-                      </div> --}}
+                      </div>
 
                       <div class="col-12">
                         <div class="row g-3">

@@ -1,4 +1,11 @@
 
+@php
+    $id = Auth::user()->id;
+    $vendorId = App\Models\User::find($id);
+    $status = $vendorId->status;
+@endphp
+
+
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
@@ -20,6 +27,8 @@
             </a>
         </li>
 
+        @if ($status == 'active')
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-home-circle'></i>
@@ -37,7 +46,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Application</div>
+                <div class="menu-title">All Oder</div>
             </a>
             <ul>
                 <li> <a href="app-emailbox.html"><i class="bx bx-right-arrow-alt"></i>Email</a>
@@ -47,6 +56,9 @@
             </ul>
         </li>
 
+    @else
+    
+ @endif
 
         <li>
             <a href="" target="_blank">

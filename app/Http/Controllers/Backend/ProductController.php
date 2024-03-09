@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\MultiImage;
 use App\Models\SubCategory;
 use App\Models\Product;
+use App\Models\User;
 use Carbon\Carbon;
 
 class ProductController extends Controller
@@ -22,7 +23,11 @@ class ProductController extends Controller
        $brands = Brand::latest()->get();
        $categories = Category::latest()->get();
        $subcategory = SubCategory::latest()->get();
-        return view('backend.product.product_add', compact('brands', 'categories', 'subcategory'));
+       $vendors =  User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+
+        return view('backend.product.product_add', compact('brands', 'categories', 'subcategory', 'vendors'));
+
+
     } // end method
 
     public function StoreProduct(Request $request){
