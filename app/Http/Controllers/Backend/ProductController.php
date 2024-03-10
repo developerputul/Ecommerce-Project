@@ -11,6 +11,7 @@ use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
+use Image;
 
 class ProductController extends Controller
 {

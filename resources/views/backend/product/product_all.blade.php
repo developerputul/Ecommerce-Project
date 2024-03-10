@@ -43,9 +43,11 @@
                     <tr>
                         <td>{{$key+1}}</td>
                         <td><img src="{{asset ($item->product_thumbnail)}}" style="width:70px; heigh:40px;"></td>
-                        <td>{{$item->product_name}}</td>
-                        <td>{{$item->selling_price}}</td>
-                        <td>{{$item->product_qty}}</td>
+                        <td>{{ $item->product_name }}</td>
+                        <td>{{ $item->selling_price }}</td>
+                        <td>{{ $item->product_qty }}</td>
+                        <td>{{ $item->discount_price }}</td>
+                        <td>{{ $item->status }}</td>
 
                         <td>
                             @if ($item->discount_price == NULL)

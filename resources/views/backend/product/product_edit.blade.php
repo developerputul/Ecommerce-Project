@@ -224,7 +224,7 @@
                 <tr>
                     <th scope="row">{{ $key+1 }}</th>
                     <td><img src="{{ asset($image->photo_name)}}" style="width: 70px; height:50px"></td>
-                    <td><input type="file" class="form-group" name="multi_image[{{$image->id}}]"></td>
+                    <td><input type="file" class="form-group" name="multi_image[{{ $image->id }}]"></td>
                     <td>
 
                     <input type="Submit" class="btn btn-primary px-4" value="Update Image" />

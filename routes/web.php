@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 
 /*
@@ -81,8 +82,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
 
 });
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
@@ -146,6 +147,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 });
     //All Product Manage Route
  Route::controller(ProductController::class)->group(function(){
+
     Route::get('all/product', 'AllProduct')->name('all.product');
     Route::get('add/product', 'AddProduct')->name('add.product');
     Route::post('store/product', 'StoreProduct')->name('store.product');
