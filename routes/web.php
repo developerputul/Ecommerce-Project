@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Backend\SliderController;
 
 
 /*
@@ -183,8 +184,22 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 });
 
+    //All Slider Route
+    Route::controller(SliderController::class)->group(function(){
+        Route::get('all/slider', 'AllSlider')->name('all.slider');
+        Route::get('add/slider', 'AddSlider')->name('add.slider');
 
-}); // end middleware
+        Route::post('store/slider', 'StoreSlider')->name('store.slider');
+        Route::get('edit/slider/{id}', 'EditSlider')->name('edit.slider');
+
+        Route::post('update/slider', 'UpdateSlider')->name('update.slider');
+        Route::get('delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
+
+    });
+
+
+
+}); //Admin End middleware
 
 
 
