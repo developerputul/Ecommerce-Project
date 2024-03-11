@@ -25,7 +25,6 @@ class ProductController extends Controller
        $categories = Category::latest()->get();
        $subcategory = SubCategory::latest()->get();
        $vendors =  User::where('status', 'active')->where('role', 'vendor')->latest()->get();
-
         return view('backend.product.product_add', compact('brands', 'categories', 'subcategory', 'vendors'));
 
 
@@ -100,7 +99,8 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         $subcategory = SubCategory::latest()->get();
         $products = Product::findOrFail($id);
-         return view('backend.product.product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multiImages'));
+        $vendors =  User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+         return view('backend.product.product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multiImages', 'vendors'));
     } // end method
 
 
@@ -146,7 +146,6 @@ class ProductController extends Controller
         return redirect()->route('all.product')->with($notification);
 
 
-
     } // end method UpdateProduct
 
     public function UpdateProductThambnail(Request $request){
@@ -174,7 +173,8 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     } // end method UpdateProduct
 
-    //multi Image
+    //Product multi Image
+
     public function UpdateProductMultiimage(Request $request){
           $images = $request->multi_image;
 
@@ -193,7 +193,7 @@ class ProductController extends Controller
             ]);
           } // end foreach
           $notification = array(
-            'message' => 'Product Mult Image Updated  Successfully',
+            'message' => 'Product Multi Image Updated  Successfully',
             'alert-type' => 'success'
         );
 
@@ -218,7 +218,6 @@ class ProductController extends Controller
     public function ProductInactive($id){
 
         Product::findOrFail($id)->update(['status' => 0]);
-
         $notification = array(
             'message' => 'Product Inactive',
             'alert-type' => 'success'

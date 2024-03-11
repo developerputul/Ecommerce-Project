@@ -6,6 +6,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
+    <!--input tags-->
+    <link href="{{asset ('adminbackend/assets/plugins/input-tags/css/tagsinput.css')}}" rel="stylesheet" />
+    <!--input tags end-->
 	<link rel="icon" href="{{asset ('adminbackend/assets/images/favicon-32x32.png')}}" type="image/png" />
 	<!--plugins-->
 	<link href="{{asset ('adminbackend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet"/>
@@ -15,6 +18,8 @@
 	<!-- loader-->
 	<link href="{{asset ('adminbackend/assets/css/pace.min.css')}}" rel="stylesheet" />
 	<script src="{{asset ('adminbackend/assets/js/pace.min.js')}}"></script>
+
+    <link href="{{ asset ('adminbackend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
 	<!-- Bootstrap CSS -->
 	<link href="{{asset ('adminbackend/assets/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset ('adminbackend/assets/css/app.css')}}" rel="stylesheet">
@@ -25,6 +30,10 @@
 	<link rel="stylesheet" href="{{asset ('adminbackend/assets/css/header-colors.css')}}" />
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
 	<title>Vendor  Dashboard</title>
 </head>
 
@@ -156,7 +165,7 @@
 	</div> --}}
 
 	<!--end switcher-->
-	<!-- Bootstrap JS -->
+
 	<script src="{{asset ('adminbackend/assets/js/bootstrap.bundle.min.js')}}"></script>
 	<!--plugins-->
 	<script src="{{asset ('adminbackend/assets/js/jquery.min.js')}}"></script>
@@ -176,13 +185,20 @@
 		  });
 	  </script>
 	  <script src="{{asset ('adminbackend/assets/js/index.js')}}"></script>
+	  <script src="{{asset ('adminbackend/assets/js/validate.min')}}"></script>
+      <!--datatable start -->
+      <script src="{{ asset ('adminbackend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+      <script>
+		$(document).ready(function() {
+			$('#example').DataTable();
+		  } );
+	</script>
+    <!--datatable end -->
 	<!--app JS-->
 	<script src="{{asset ('adminbackend/assets/js/app.js')}}"></script>
-
-
-
+    <!--toastr start-->
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+    <!--toastr end-->
  <script>
   @if(Session::has('message'))
   var type = "{{ Session::get('alert-type','info') }}"
@@ -205,6 +221,19 @@
   }
   @endif
  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
+<script src="{{asset ('adminbackend/assets/plugins/input-tags/js/tagsinput.js')}}"></script>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#ck-editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+    </script>
 
 </body>
 
