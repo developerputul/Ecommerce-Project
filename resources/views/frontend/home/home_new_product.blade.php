@@ -1,4 +1,7 @@
 
+@php
+$product = App\Models\Product::where('status', 1)->orderBy('id', 'ASC')->limit(4)->get();
+@endphp
 
 <section class="product-tabs section-padding position-relative">
     <div class="container">
@@ -32,6 +35,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                 <div class="row product-grid-4">
+                    
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                             <div class="product-img-action-wrap">
