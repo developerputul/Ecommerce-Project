@@ -33,6 +33,7 @@
                         <th>Product Name</th>
                         <th>Price</th>
                         <th>QTY</th>
+                        <th>Discount Price</th>
                         <th>Discount</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -47,7 +48,6 @@
                         <td>{{ $item->selling_price }}</td>
                         <td>{{ $item->product_qty }}</td>
                         <td>{{ $item->discount_price }}</td>
-                        <td>{{ $item->status }}</td>
 
                         <td>
                             @if ($item->discount_price == NULL)
