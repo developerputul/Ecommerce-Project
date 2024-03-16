@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\IndexController;
 
 
 /*
@@ -212,9 +213,12 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     });
 
 
-
 }); //Admin End middleware
 
+
+//frontend product Details
+
+Route::get('/dashboard/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
 
