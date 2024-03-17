@@ -218,7 +218,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 //frontend product Details
 
-Route::get('/dashboard/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 
 

@@ -1,6 +1,6 @@
 @php
-    $products = App\Models\Product::where('status', 1)->orderBy('id', 'ASC')->limit(8)->get();
-    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(8)->get();
+    $products = App\Models\Product::where('status', 1)->orderBy('id', 'ASC')->limit(10)->get();
+    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(10)->get();
 @endphp
 
 <section class="product-tabs section-padding position-relative">
@@ -34,7 +34,7 @@
                     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="{{ url('product/details/'.$product->id. '/'.$product->product_slug)}}">
                                     <img class="default-img" src="{{ asset($product->product_thumbnail) }}" alt="" />
                                 </a>
                             </div>
@@ -122,7 +122,7 @@
                     <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                         <div class="product-img-action-wrap">
                             <div class="product-img product-img-zoom">
-                                <a href="shop-product-right.html">
+                                <a href="{{ url('product/details/'.$product->id. '/'.$product->product_slug)}}">
                                     <img class="default-img" src="{{ asset($product->product_thumbnail) }}" alt="" />
                                 </a>
                             </div>
@@ -149,7 +149,7 @@
 
                         <div class="product-content-wrap">
                             <div class="product-category">
-                                <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                <a href="{{ url('product/details/'.$product->id. '/'.$product->product_slug)}}">{{ $product['category']['category_name'] }}</a>
                             </div>
                             <h2><a href="shop-product-right.html">{{ $product->product_name }}</a></h2>
                             <div class="product-rate-cover">
