@@ -28,7 +28,7 @@
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="{{ (!empty($vendorData->photo)) ? url('upload/vendor_image/'. $vendorData->photo): url('upload/no_image.jpg')}}" alt="Vendor" class="rounded-circle p-1 bg-primary" width="110">
                                 <div class="mt-3">
-                                    <h4>{{$vendorData->name}}</h4>
+                                    <h4>{{ $vendorData->name }}</h4>
                                     <p class="text-secondary mb-1">{{$vendorData->email}}</p>
                                     <p class="text-muted font-size-sm">{{$vendorData->address}}</p>
                                 </div>
@@ -52,7 +52,7 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            
+
                             <form method="post" action="{{ route('vendor.profile.store') }}" enctype="multipart/form-data" >
                             @csrf
                             <div class="row mb-3">
