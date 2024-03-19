@@ -12,7 +12,19 @@ use App\Models\Product;
 use App\Models\User;
 
 class IndexController extends Controller
+
 {
+    public function Index(){
+        $category = Category::skip(0)->first();
+        $products = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(5)->get();
+
+        $Sweethome = Category::skip(2)->first();
+        $Sweethome_1 = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(5)->get();
+
+        return view('frontend.index', compact('category', 'products', 'Sweethome', 'Sweethome_1'));
+
+    } // End Method
+
     public function ProductDetails($id,$slug){
 
         $product = Product::findOrFail($id);
