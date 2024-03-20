@@ -16,17 +16,31 @@ class IndexController extends Controller
 {
     public function Index(){
         $category = Category::where('category_name', 'Fashion')->first();
-        $products = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $products = Product::where('status',1)->where('category_id',
+         $category->id)->orderBy('id', 'DESC')->limit(5)->get();
 
         $Sweethome = Category::where('category_name', 'Sweet Home')->first();
-        $Sweethome_category = Product::where('status',1)->where('category_id', $Sweethome->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $Sweethome_category = Product::where('status',1)->where('category_id',
+         $Sweethome->id)->orderBy('id', 'DESC')->limit(5)->get();
 
         $mobile = Category::where('category_name', 'Mobile')->first();
-        $mobile_category = Product::where('status',1)->where('category_id', $mobile->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $mobile_category = Product::where('status',1)->where('category_id',
+         $mobile->id)->orderBy('id', 'DESC')->limit(5)->get();
+
+        $hot_deals = Product::where('hot_deals', 1)->where('discount_price',
+        '!=', NULL)->orderBy('id', 'DESC')->limit(4)->get();
+
+        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(4)->get();
+
+        $new = Product::where('status',1)->orderBy('id', 'DESC')->limit(4)->get();
+
+        $special_deals = Product::where('special_deals',1)->orderBy('id', 'DESC')->limit(4)->get();
+
 
         return view('frontend.index', compact('category',
          'products', 'Sweethome', 'Sweethome_category',
-          'mobile', 'mobile_category'));
+          'mobile', 'mobile_category', 'hot_deals',
+          'special_offer',  'new','special_deals'));
 
     } // End Method
 
