@@ -15,13 +15,18 @@ class IndexController extends Controller
 
 {
     public function Index(){
-        $category = Category::skip(0)->first();
+        $category = Category::where('category_name', 'Fashion')->first();
         $products = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(5)->get();
 
-        $Sweethome = Category::skip(2)->first();
-        $Sweethome_1 = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $Sweethome = Category::where('category_name', 'Sweet Home')->first();
+        $Sweethome_category = Product::where('status',1)->where('category_id', $Sweethome->id)->orderBy('id', 'DESC')->limit(5)->get();
 
-        return view('frontend.index', compact('category', 'products', 'Sweethome', 'Sweethome_1'));
+        $mobile = Category::where('category_name', 'Mobile')->first();
+        $mobile_category = Product::where('status',1)->where('category_id', $mobile->id)->orderBy('id', 'DESC')->limit(5)->get();
+
+        return view('frontend.index', compact('category',
+         'products', 'Sweethome', 'Sweethome_category',
+          'mobile', 'mobile_category'));
 
     } // End Method
 
