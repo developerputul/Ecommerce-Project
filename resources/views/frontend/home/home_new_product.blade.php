@@ -52,10 +52,10 @@
                                             data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
                                     </div>
 
-                    @php
-                        $amount = $product->selling_price - $product->discount_price;
-                        $discount = ($amount / $product->selling_price) * 100;
-                    @endphp
+                        @php
+                            $amount = $product->selling_price - $product->discount_price;
+                            $discount = ($amount / $product->selling_price) * 100;
+                        @endphp
 
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         @if ($product->discount_price == null)
@@ -114,6 +114,9 @@
                         </div>
                     @endforeach
                 </div>
+                <!--end product-->
+
+                
                 <!-- End product-grid-4 -->
             </div>
             <!-- End tab one -->
