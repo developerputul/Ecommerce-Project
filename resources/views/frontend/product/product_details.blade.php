@@ -266,7 +266,8 @@
 
                             <div class="tab-pane fade" id="Vendor-info">
                                 <div class="vendor-logo d-flex mb-30">
-                                    <img src="{{ (!empty($product->vendor->photo)) ? url('upload/vendor_image/'. $product->vendor->photo): url('upload/no_image.jpg')}}" alt="" />
+                                    <img src="{{ (!empty($product->vendor->photo)) ? url('upload/vendor_image/'.
+                                     $product->vendor->photo): url('upload/no_image.jpg')}}" alt="" />
                                     <div class="vendor-name ml-15">
 
                                         @if ($product->vendor_id == NULL)
@@ -515,10 +516,10 @@
 @endforeach
 
 
-        </div>
-    </div>
-</div>
             </div>
+           </div>
+         </div>
+         </div>
         </div>
     </div>
 </div>

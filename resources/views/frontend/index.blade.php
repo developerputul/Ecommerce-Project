@@ -74,7 +74,8 @@
                                     <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                 </div>
 
-                                <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    {{ $product->product_name }}</a>
                                 </h2>
                                 <div class="product-rate-cover">
                                     <div class="product-rate d-inline-block">
@@ -418,6 +419,8 @@
 
     </div>
 </div>
+
+
 
 
     <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 d-none d-lg-block wow animate__animated animate__fadeInUp" data-wow-delay=".2s">

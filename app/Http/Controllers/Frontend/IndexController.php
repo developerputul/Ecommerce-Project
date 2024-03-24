@@ -63,4 +63,12 @@ class IndexController extends Controller
         return view('frontend.product.product_details', compact('product', 'product_color', 'product_size', 'multiimage', 'relatedProduct'));
 
     } // End Product Details
+
+    public function VendorDetails($id){
+
+        $vendor = User::findOrFail($id);
+        $vProduct = Product::where('vendor_id', $id)->get();
+        return view('frontend.vendor.vendor_details', compact('vendor', 'vProduct'));
+
+    } // End Method
 }
