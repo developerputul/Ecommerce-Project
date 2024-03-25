@@ -259,16 +259,16 @@
                 </div>
                 <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                     <nav>
-                        <ul>
+                        <ul> 
                             <li>
-                                <a class="active" href="index.html">Home  </a>
+                                <a class="active" href="{{ url('/') }}">Home</a>
                             </li>
                                 @php
-                                $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(5)->get();
+                                $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(7)->get();
                                 @endphp
-                                                    @foreach ($categories as $category)
+                                @foreach ($categories as $category)
                             <li>
-                                <a href="#">{{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
+                                <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
 
                                 @php
                                 $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name', 'ASC')->limit(6)->get();
