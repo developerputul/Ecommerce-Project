@@ -273,11 +273,13 @@
                                 @php
                                 $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name', 'ASC')->limit(6)->get();
                                 @endphp
-                                                            <ul class="sub-menu">
-                                    @foreach ($subcategories as $subcategory)
-                                    <li><a href="vendors-grid.html">{{$subcategory->subcategory_name}}</a></li>
-                                    @endforeach
-                                </ul>
+                <ul class="sub-menu">
+                        @foreach ($subcategories as $subcategory)
+                        <li>
+                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{$subcategory->subcategory_name}}</a>
+                        </li>
+                        @endforeach
+                    </ul>
                             </li>
                         @endforeach
 

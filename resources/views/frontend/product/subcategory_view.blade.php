@@ -6,10 +6,11 @@
         <div class="archive-header">
             <div class="row align-items-center">
                 <div class="col-xl-3">
-                    <h5 class="mb-15">{{ $vercat->category_name }}</h5>
+                    <h5 class="mb-15">{{ $subvercat->subcategory_name }}</h5>
                     <div class="breadcrumb">
                         <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                        <span></span>{{ $vercat->category_name }}
+                        <span></span>{{ $subvercat->category->category_name }} 
+                        <span></span>{{ $subvercat->subcategory_name }}
                     </div>
                 </div>
                
@@ -105,7 +106,7 @@
 
                         <div class="product-content-wrap">
                             <div class="product-category">
-                                <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                <a href="shop-grid-right.html">{{ $product['subcategory']['subcategory_name'] }}</a>
                             </div>
                             <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                             </h2>

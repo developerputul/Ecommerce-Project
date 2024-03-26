@@ -13,7 +13,7 @@ class Product extends Model
     public function vendor(){
         return $this->belongsTo(User::class, 'vendor_id', 'id');
     }
-    public function category(){
+     public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
     public function subcategory(){
