@@ -131,8 +131,30 @@ function productView(id){
                 $('#stockout').text('');
                 $('#stockout').text('stockout');
             }
-
             //End start stock Options
+
+            $('select[name="size"]').empty();
+            $.each(data.size, function(key,value ){
+                $('select[name="size"]').append('<option value="'+ value +' ">'+ value + '</option>');
+
+                if(data.size == ""){
+                    $('#sizeArea').hide();
+                } else{
+                    $('#sizeArea').show();
+                }
+            }) // End Size Options
+
+            //Color Start Options
+            $('select[name="color"]').empty();
+            $.each(data.color, function(key,value ){
+                $('select[name="color"]').append('<option value="'+ value +' ">'+ value + '</option>');
+
+                if(data.color == ""){
+                    $('#colorArea').hide();
+                } else{
+                    $('#colorArea').show();
+                }
+            }) // End Color Options
             
 
         }

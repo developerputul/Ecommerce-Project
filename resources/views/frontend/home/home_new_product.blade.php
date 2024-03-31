@@ -3,6 +3,9 @@
     $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(10)->get();
 @endphp
 
+
+
+
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
@@ -19,18 +22,15 @@
                         <a class="nav-link" id="nav-tab-{{ $category->id }}" data-bs-toggle="tab"
                             href="#category{{ $category->id }}" type="button" role="tab"
                             aria-controls="tab-{{ $category->id }}"
-                            aria-selected="false">{{ $category->category_name }}</a>
+                           aria-selected="false">{{ $category->category_name }}</a>
                     </li>
                 @endforeach
-
-
             </ul>
         </div>
         <!-- End nav-tabs -->
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                 <div class="row product-grid-4">
-
 
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
@@ -148,11 +148,18 @@
                                         </div>
                                         <div class="product-action-1">
                                             <a aria-label="Add To Wishlist" class="action-btn"
-                                                href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
-                                            <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                href="shop-wishlist.html">
+                                                <i class="fi-rs-heart"></i>
+                                            </a>
+
+                                                <a aria-label="Compare" class="action-btn" href="shop-compare.html">
+                                                    <i class="fi-rs-shuffle"></i>
+                                                </a>
+
+                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
+                                                data-bs-target="#quickViewModal"  id="{{ $product->id }}" onclick="productView(this.id)">
+                                                <i class="fi-rs-eye"></i>
+                                              </a>
                                         </div>
 
                                         @php
