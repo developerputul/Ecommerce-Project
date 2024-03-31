@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="detail-info pr-30 pl-30">
-     <h5 class="title-detail"><a href="" class="text-heading" id="pname"></a></h5>
+     <h5 class="title-detail"><a href="" class="text-heading" id="pname"></a></h5> 
         <br>
 
 
@@ -64,16 +64,18 @@
                             </ul>
                         </div>
                     </div> <!--end cols-->
-                    <div class="col-md-6">
+                    <div class="col-md-6">  
                         <div class="font-xs">
                             <ul>
 
                                 <li class="mb-5">Product Code: <span class="text-brand" id="pcode"> </span></li>
 
-                                <li class="mb-5">Stock:<span class="badge badge-pill badge-success" id="aviable" style="background: green; color:white; "></span>
+                                <li class="mb-5">Stock:<span class="badge badge-pill badge-success" id="aviable" style="background: green; color:white; ">
+                                  </span>
                                 </li>
 
-                                <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color:white; "></span>
+                                <span class="badge badge-pill badge-danger" id="stockout" style="background: red; color:white; ">
+                                </span>
                                 
 
                             </ul>

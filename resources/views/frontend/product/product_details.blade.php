@@ -5,8 +5,12 @@
     <div class="container">
         <div class="breadcrumb">
             <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> <a href="shop-grid-right.html">{{ $product['category']['category_name']}}</a> <span></span> {{ $product['subcategory']['subcategory_name']}} <span></span>
-            {{ $product->product_name}}
+            <span></span> <a href="shop-grid-right.html">{{ $product['category']['category_name']}}</a>
+            @if($product['subcategory'])
+             <span></span>
+             {{ $product['subcategory']['subcategory_name']}} <span></span>
+             @endif
+             {{ $product->product_name}}
         </div>
     </div>
     </div>
@@ -135,8 +139,9 @@
                         <li class="mb-5">Brand: <span class="text-brand">{{ $product['brand']['brand_name']}}</span></li>
 
                         <li class="mb-5">Category:<span class="text-brand">{{ $product['category']['category_name']}}</span></li>
-
+                        @if($product['subcategory'])
                         <li>SubCategory: <span class="text-brand">{{ $product['subcategory']['subcategory_name']}}</span></li>
+                        @endif
                     </ul>
                     <ul class="float-start">
                         <li class="mb-5">Product Code: <a href="#">{{ $product->product_code}}</a></li>

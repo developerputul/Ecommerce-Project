@@ -46,7 +46,7 @@ class IndexController extends Controller
 
     public function ProductDetails($id,$slug){
 
-        $product = Product::findOrFail($id);
+        $product = Product::with(['category', 'subcategory'])->findOrFail($id);
 
         $color = $product->product_color;
         $product_color = explode(',', $color);
@@ -101,7 +101,6 @@ class IndexController extends Controller
     } // End Method
 
     public function ProductViewAjax($id){
-
         $product = Product::with('category', 'brand')->findOrFail($id);
 
         $color = $product->product_color;
