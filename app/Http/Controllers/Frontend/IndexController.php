@@ -36,11 +36,8 @@ class IndexController extends Controller
 
         $special_deals = Product::where('special_deals',1)->orderBy('id', 'DESC')->limit(4)->get();
 
-
-        return view('frontend.index', compact('category',
-         'products', 'Sweethome', 'Sweethome_category',
-          'mobile', 'mobile_category', 'hot_deals',
-          'special_offer',  'new','special_deals'));
+        return view('frontend.index', compact('category','products', 'Sweethome', 'Sweethome_category',
+          'mobile', 'mobile_category', 'hot_deals','special_offer',  'new','special_deals'));
 
     } // End Method
 

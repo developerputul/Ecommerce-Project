@@ -219,7 +219,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 }); //Admin End middleware
 
 
-//frontend product Details
+//frontend product Details All Route
 
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
@@ -239,6 +239,11 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 //Get Data form Mini cart
 Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+//Add to Cart Store Data for Product  Details Page
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
 
 
 

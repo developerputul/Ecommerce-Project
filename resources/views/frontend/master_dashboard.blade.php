@@ -217,8 +217,65 @@ function addToCart(){
     }) 
 
 }
-
 //End Add to Cart Product
+
+
+//Start Details Page Add to Cart Product
+
+function addToCartDetails(){
+
+        var product_name = $('#dpname').text();
+        var id = $('#dproduct_id').val();
+        var color = $('#dcolor option:selected').text();
+        var size = $('#dsize option:selected').text();
+        var quantity = $('#dqty').val();
+   $.ajax({
+        type: "POST",
+        dataType : 'json',
+        data:{
+            color:color, size:size, quantity:quantity, product_name:product_name,
+        },
+    url: "/dcart/data/store/"+id,
+    success:function(data){
+        miniCart();
+       
+        // console.log(data)
+
+
+
+        //start Message
+        const Toast = Swal.mixin({
+
+            toast: true,
+            position: "top-end",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3000
+        })
+        if($.isEmptyObject(data.error)){
+
+            Toast.fire({
+            type: "success",
+            title: data.success,
+            });
+
+        }else{
+
+            Toast. fire({
+            type: "error",
+            title: data.error,
+            });
+        }
+        //End Message
+    }
+
+}) 
+
+}
+///End Details Page Add to Cart Product
+
+
+
 </script>
 
 <script type="text/javascript">
@@ -250,7 +307,8 @@ function miniCart(){
                                         <h4><span>${value.qty} × </span>${value.price}</h4>
                                     </div>
                                     <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
-                                        <a href="#"><i class="fi-rs-cross-small"></i></a>
+                                     <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)" >
+                                     <i class="fi-rs-cross-small"></i></a>
                                     </div>
                                 </li>
                             </ul>
@@ -266,8 +324,56 @@ function miniCart(){
 
 miniCart();
 
-</script>
 
+//Mini Cart remove start// 
+    function miniCartRemove(rowId){
+        $.ajax({ 
+            type: 'GET',
+            url: '/minicart/product/remove/'+rowId,
+            dataType: 'json',
+            success:function(data){
+                miniCart();
+
+                 //start Message
+
+
+            const Toast = Swal.mixin({
+
+                    toast: true,
+                    position: "top-end",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 3000
+                    })
+                    if($.isEmptyObject(data.error)){
+
+                    Toast.fire({
+                    type: "success",
+                    title: data.success,
+                    });
+
+                    }else{
+
+                    Toast. fire({
+                    type: "error",
+                    title: data.error,
+                    });
+                    }
+                    //End Message
+            }
+        })
+
+    }
+
+ //Mini Cart remove End// 
+
+
+
+
+
+
+
+</script>
 
 
 
