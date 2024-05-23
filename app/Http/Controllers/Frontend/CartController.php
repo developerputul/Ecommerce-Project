@@ -33,7 +33,7 @@ class CartController extends Controller
                 'id' => $id,
                 'name' => $request->product_name,
                 'qty'  => $request->quantity,
-                'price' => $product->discount_price,
+                'price' => $product->discount_price,  
                 'weight' => 1,
                 'options' => [
 
@@ -49,6 +49,7 @@ class CartController extends Controller
     public function AddToCartDetails(Request $request, $id){
 
         $product = Product::findOrFail($id);
+        
         if($product->discount_price == NULL){
 
             Cart::add([

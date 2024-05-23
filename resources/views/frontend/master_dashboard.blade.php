@@ -302,6 +302,7 @@ function miniCart(){
                                         <a href="shop-product-right.html"><img alt="Nest" 
                                     src="${value.options.image}" style="width: 50px;height: 50px;" /></a>
                                     </div>
+                                    
                                     <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                                         <h4><a href="shop-product-right.html">${value.name}</a></h4>
                                         <h4><span>${value.qty} × </span>${value.price}</h4>
@@ -335,8 +336,6 @@ miniCart();
                 miniCart();
 
                  //start Message
-
-
             const Toast = Swal.mixin({
 
                     toast: true,
@@ -366,14 +365,67 @@ miniCart();
     }
 
  //Mini Cart remove End// 
-
-
-
-
-
-
-
 </script>
+
+ <!--Start Wishlist add-->
+ <script type="text/javascript">
+    function addToWishList(product_id){
+        $.ajax({
+            type: "POST",
+            dataType: 'json',
+            url: "/add-to-wishlist/"+product_id,
+
+            success:function(data){
+
+                 //start Message
+            const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        
+                        showConfirmButton: false,
+                        timer: 3000
+                        })
+                        if($.isEmptyObject(data.error)){
+
+                    Toast.fire({
+                        type: "success",
+                        icon: "success",
+                        title: data.success,
+                        });
+
+                        }else{
+
+                    Toast. fire({
+                        type: "error",
+                        icon: "error",
+                        title: data.error,
+                        });
+                        }
+                        //End Message
+            }
+        })
+    }
+ </script>
+ <!--End Wishlist add-->
+
+ <!--Start Load Wishlist data-->
+ <script type="text/javascript">
+    function wishlist(){
+        $.ajax({
+            type: "GET",
+            dataType: 'json',
+            url: "/get-wishlist-product/",
+
+            success:function(response){
+
+
+            }
+        })
+    }
+ </script>
+ <!--End Lord Wishlist data-->
+
+
 
 
 
