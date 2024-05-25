@@ -5,16 +5,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Backend\CouponController;
+
+
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 
@@ -67,7 +73,7 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
 
     Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
-});
+ });
 
 //Vendor Dashboard routes
 Route::middleware(['auth', 'role:vendor'])->group(function(){
@@ -217,9 +223,21 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
+    //All Coupon All  Route
+    Route::controller(CouponController::class)->group(function(){
+        Route::get('all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('add/coupon', 'AddCoupon')->name('add.coupon');
+
+        Route::post('store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::get('edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+
+        Route::post('update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::get('delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+
+    });
+
 
 }); //Admin End middleware
-
 
 //frontend product Details All Route
 
