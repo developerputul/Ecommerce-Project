@@ -45,7 +45,6 @@ class CouponController extends Controller
     }// End Mehtod
 
     public function UpdateCoupon(Request $request){
-
         $coupon_id = $request->id;
 
         Coupon::findOrFail($coupon_id)->update([
@@ -63,13 +62,11 @@ class CouponController extends Controller
         );
 
         return redirect()->route('all.coupon')->with($notification);
-
-
     } // End Method
+
     public function DeleteCoupon($id){
-
+        
         Coupon::findOrFail($id)->delete();
-
         $notification = array(
             'message' => 'Coupon Deleted Successfully',
             'alert-type' => 'success'

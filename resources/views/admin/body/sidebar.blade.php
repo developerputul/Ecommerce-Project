@@ -115,7 +115,23 @@
             <ul>
                 <li> <a href="{{route ('all.coupon')}}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
                 </li>
-                <li> <a href="{{route ('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
+                <li> <a href="{{route ('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Shipping Area</div>
+            </a>
+            <ul>
+                <li> <a href="{{route ('all.division')}}"><i class="bx bx-right-arrow-alt"></i>All Division</a>
+                </li>
+                <li> <a href="{{route ('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>All District</a>
+                </li>
+                <li> <a href="{{route ('add.coupon')}}"><i class="bx bx-right-arrow-alt"></i>All State</a>
                 </li>
             </ul>
         </li>
