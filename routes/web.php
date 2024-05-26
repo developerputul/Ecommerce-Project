@@ -239,7 +239,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
-    //All Shipping Division Route
+    // Shipping Division All Route
     Route::controller(ShippingAreaController::class)->group(function(){
         Route::get('all/division', 'AllDivision')->name('all.division');
         Route::get('add/division', 'AddDivision')->name('add.division');
@@ -252,11 +252,27 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
+    //SHipping District All Route
+    Route::controller(ShippingAreaController::class)->group(function(){
+        Route::get('all/district', 'AllDistrict')->name('all.district');
+        Route::get('add/district', 'AddDistrict')->name('add.district');
+
+        Route::post('store/district', 'StoreDistrict')->name('store.district');
+        Route::get('edit/district/{id}', 'EditDistrict')->name('edit.district');
+
+        Route::post('update/district', 'UpdateDistrict')->name('update.district');
+        Route::get('delete/district/{id}', 'DeleteDistrict')->name('delete.district');
+
+    });
+
 
 }); //Admin End middleware
 
-//frontend product Details All Route
 
+
+
+
+//frontend product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
