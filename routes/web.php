@@ -265,6 +265,21 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
+    //SHipping State All Route
+    Route::controller(ShippingAreaController::class)->group(function(){
+        Route::get('all/state', 'AllState')->name('all.state');
+        Route::get('add/state', 'AddState')->name('add.state');
+
+        Route::post('store/state', 'StoreState')->name('store.state');
+        Route::get('edit/state/{id}', 'EditState')->name('edit.state');
+
+        Route::post('update/state', 'UpdateState')->name('update.state');
+        Route::get('delete/state/{id}', 'DeleteState')->name('delete.state');
+
+        Route::get('/district/ajax/{division_id}', 'GetDistrict');
+
+    });
+
 
 }); //Admin End middleware
 
