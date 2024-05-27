@@ -135,6 +135,21 @@ class CartController extends Controller
 
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty -1);
+
+        if(Session::has('coupon')){
+            $coupon_name = session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
+
+            ]);
+
+        }
+
         return response()->json('Decrement');
 
     } // End Method
@@ -143,6 +158,21 @@ class CartController extends Controller
         
         $row = Cart::get($rowId);
         Cart::update($rowId, $row->qty +1);
+
+        if(Session::has('coupon')){
+            $coupon_name = session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name', $coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
+
+            ]);
+
+        }
+
         return response()->json('Increment');
 
 
@@ -171,9 +201,33 @@ class CartController extends Controller
             return response()->json(['error' =>  'Invalid Coupon']);
           }
 
+    } // End Method
 
+    public function CouponCalculation(){
+
+        if(Session::has('coupon')){
+
+            return response()->json(array(
+                'subtotal' => Cart::total(),
+                'coupon_name' => session()->get('coupon')['coupon_name'],
+                'coupon_discount' => session()->get('coupon')['coupon_discount'],
+                'discount_amount' => session()->get('coupon')['discount_amount'],
+                'total_amount' => session()->get('coupon')['total_amount'],
+            ));
+        }else{
+            return response()->json(array(
+                'total' => Cart::total(),
+
+            ));
+        }
 
     } // End Method
+    public function CouponRemove(){
+
+        Session::forget('coupon');
+        return response()->json(['success' => 'Coupon Remove Successfully']);
+    } // End Method
+
 
 
 
