@@ -94,8 +94,9 @@
 	<!--app JS-->
 	<script src="{{asset ('adminbackend/assets/js/app.js')}}"></script>
     <!--toastr start-->
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!--toastr end-->
+
  <script>
   @if(Session::has('message'))
   var type = "{{ Session::get('alert-type','info') }}"
