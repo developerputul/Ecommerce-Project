@@ -123,6 +123,8 @@
                     <div class="product-extra-link2">
 
                             <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                            <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
+
                             <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()">
                                 <i class="fi-rs-shopping-cart"></i>Add to cart
                             </button>
@@ -138,7 +140,7 @@
                             </div>
 
                             @if ($product->vendor_id == NULL)
-                                <h6>Slod By <a href="#"><span class="text-danger"> Owner </span></a></h6>
+                                <h6>Slod By <a href="#"><span class="text-danger">Expart Fashion</span></a></h6>
                             @else
                             <h6>Slod By <a href="#"><span class="text-danger"> {{ $product['vendor']['name']}} </span></a></h6>
                             @endif

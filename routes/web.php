@@ -27,6 +27,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 
 /*
@@ -335,8 +336,6 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
     Route::get('/cart-remove/{rowId}', 'CartRemove');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
-
-
 });
 
 
@@ -357,8 +356,6 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/compare', 'AllCompare')->name('compare');
         Route::get('/get-compare-product', 'GetCompareProduct');
         Route::get('/compare-remove/{id}', 'CompareRemove');
-       
-       
     });
 
 
@@ -369,11 +366,17 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
 
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
-       
-       
+    
     });
 
-}); // End Group   User Middleware 
+    //Stripe All Route
+    Route::controller(StripeController::class)->group(function(){
+        
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+    
+    });
+
+}); // End Group User Middleware 
 
 
 
