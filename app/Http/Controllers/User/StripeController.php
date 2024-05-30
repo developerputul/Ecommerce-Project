@@ -64,6 +64,22 @@ class StripeController extends Controller
             'created_at' => Carbon::now(),  
 
             ]);
+
+            //Start Send Email///
+
+            $invoice = Order::findOrFail($order_id);
+
+            $data = [
+                'invoice_no' => $invoice->invoice_no,
+                'amount'  => $total_amount,
+                'name' => $invoice->name,
+                'email' => $invoice->email,
+
+            ];
+
+            //End Send Email///
+
+
             $carts = Cart::content();
             foreach($carts as $cart){
     
