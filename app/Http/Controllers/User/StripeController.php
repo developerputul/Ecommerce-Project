@@ -11,6 +11,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\session;
 use Stripe\Charge;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderMail;
 
 class StripeController extends Controller
 {
@@ -77,8 +79,10 @@ class StripeController extends Controller
 
             ];
 
-            //End Send Email///
+            Mail::to($request->email)->send(new OrderMail($data));
 
+
+            //End Send Email///
 
             $carts = Cart::content();
             foreach($carts as $cart){
