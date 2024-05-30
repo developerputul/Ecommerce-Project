@@ -146,10 +146,6 @@
                     <input type="hidden" name="notes" value="{{ $data['notes'] }}">
 
 
-
-
-
-
                     </label>
             
                     <div id="card-element">

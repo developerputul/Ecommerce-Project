@@ -197,9 +197,6 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     Route::get('product/inactive/{id}', 'ProductInactive')->name('product.inactive');
     Route::get('product/active/{id}', 'ProductActive')->name('product.active');
     Route::get('delete/product/{id}', 'ProductDelete')->name('delete.product');
-
-
-
 });
 
     //All Slider Route
@@ -282,11 +279,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
-
 }); //Admin End middleware
-
-
-
 
 
 //frontend product Details All Route
@@ -328,7 +321,6 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 //Checkout Page Route
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
-
   //Cart All Route
   Route::controller(CartController::class)->group(function(){
     Route::get('/mycart', 'MyCart')->name('mycart');
@@ -337,7 +329,6 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
-
 
 //// User All Route /////
 Route::middleware(['auth','role:user'])->group(function() {
@@ -349,7 +340,6 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
        
     });
-
   //Compare All Route
     Route::controller(CompareController::class)->group(function(){
 
@@ -357,23 +347,18 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/get-compare-product', 'GetCompareProduct');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
-
-
     //Checkout All Route
     Route::controller(CheckoutController::class)->group(function(){
         
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
-
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
-    
     });
-
     //Stripe All Route
     Route::controller(StripeController::class)->group(function(){
         
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-    
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
 
 }); // End Group User Middleware 
