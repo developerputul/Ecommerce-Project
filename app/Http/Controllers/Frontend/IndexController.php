@@ -16,8 +16,7 @@ class IndexController extends Controller
 {
     public function Index(){
         $category = Category::where('category_name', 'Fashion')->first();
-        $products = Product::where('status',1)->where('category_id',
-         $category->id)->orderBy('id', 'DESC')->limit(5)->get();
+        $products = Product::where('status',1)->where('category_id', $category->id)->orderBy('id', 'DESC')->limit(10)->get();
 
         $Sweethome = Category::where('category_name', 'Sweet Home')->first();
         $Sweethome_category = Product::where('status',1)->where('category_id',

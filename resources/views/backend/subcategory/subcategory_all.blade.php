@@ -37,8 +37,10 @@
                     <tbody>
                         @foreach ( $subcategories as $key => $item)
                         <tr>
+
                             <td>{{ $key+1 }}</td>
-                             <td>{{ $item['category']['category_name'] }}</td>
+                            {{-- <td>{{ $item['category']['category_name'] }}</td> --}}
+                            <td>{{ $item['$itemcategory]category_name']}}</td>
                             <td>{{ $item->subcategory_name }}</td>
 
                             <td>
@@ -46,6 +48,7 @@
                                 <a href="{{ route('delete.subcategory', $item->id)}}" class="btn btn-danger" id="delete">Delete</a>
                             </td>
                         </tr>
+
                         @endforeach
                     </tbody>
                     <tfoot>

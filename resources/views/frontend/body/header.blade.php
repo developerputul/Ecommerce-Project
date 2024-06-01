@@ -265,15 +265,18 @@
                                 @endphp
                                 @foreach ($categories as $category)
                             <li>
-                           <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
+                           <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">
+                            {{$category->category_name}} <i class="fi-rs-angle-down"></i></a>
 
                     @php
-                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)->orderBy('subcategory_name', 'ASC')->limit(6)->get();
+                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                    ->orderBy('subcategory_name', 'ASC')->limit(6)->get();
                     @endphp
                 <ul class="sub-menu">
                         @foreach ($subcategories as $subcategory)
                         <li>
-                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{$subcategory->subcategory_name}}</a>
+                            <a href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">
+                                {{$subcategory->subcategory_name}}</a>
                         </li>
                         @endforeach
                     </ul>

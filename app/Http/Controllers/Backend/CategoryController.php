@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -96,6 +97,15 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
         $image = $category->category_image;
+        $relatedProduct = Product::where('category_id', $category->id)->get();
+        if($relatedProduct->count() > 0 || $category->category_name == "Sweet Home" || $category->category_name == "Fashion" || $category->category_name == "Mobile"){
+            $notification = array(
+                'message' => "Category can't be delete cause it's linked to a product !",
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification);
+        }
         if($image){
             unlink($image);
         }
@@ -106,7 +116,7 @@ class CategoryController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->back()->with('success', 'Category Deleted successfully');
+        return redirect()->back()->with($notification);
 
     } // End Method
 }

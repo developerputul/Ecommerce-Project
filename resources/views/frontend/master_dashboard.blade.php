@@ -125,19 +125,16 @@ function productView(id){
         url: '/product/view/modal/'+id,
         dataType: 'json',
         success:function(data){
-            console.log(data)
-
-
-            $('#pname').text(data.product.product_name);
-            $('#pprice').text(data.product.selling_price);
+            $('#pname').text(data.product?.product_name);
+            $('#pprice').text(data.product?.selling_price);
 
             $('#pcode').text(data.product.product_code);
             $('#pcategory').text(data.product.category.category_name);
 
-            $('#pbrand').text(data.product.brand.brand_name);
+            $('#pbrand').text(data.product?.brand?.brand_name);
             $('#pimage').attr('src', ''+data.product.product_thumbnail);
 
-            $('#pvendor_id').text(data.product.vendor_id);
+            $('#pvendor_id').text(data.product?.vendor_id);
 
             $('#product_id').val(id);
             $('#qty').val(1);
@@ -146,7 +143,7 @@ function productView(id){
             if(data.product.discount_price == null){
                 $('#pprice').text('');
                 $('#oldprice').text('');
-                $('#pprice').text(data.product.selling_price);
+                $('#pprice').text(data.product?.selling_price);
             } else{
                 $('#pprice').text(data.product.discount_price);
                 $('#oldprice').text(data.product.selling_price);
