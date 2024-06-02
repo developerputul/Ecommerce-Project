@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\UserController;
 
+
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -28,6 +29,8 @@ use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
+
 
 
 /*
@@ -354,11 +357,23 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
+
     //Stripe All Route
     Route::controller(StripeController::class)->group(function(){
         
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
+    });
+
+    //User Dashboard All Route
+    Route::controller(AllUserController::class)->group(function(){
+        
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+
+        Route::get('/user/order/page', 'UserOrder')->name('user.order.page');
+        Route::get('/user/order_details/{order_id}', 'UserOrderDetails');
+       
     });
 
 }); // End Group User Middleware 

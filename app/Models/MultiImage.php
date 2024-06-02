@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MultiImage extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
 }
