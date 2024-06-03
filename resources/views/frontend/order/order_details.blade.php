@@ -2,7 +2,6 @@
 @section('user')
 
 
-
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
@@ -202,6 +201,7 @@
                             <td class="col-md-2">
                                 <label>{{ $item->product->product_code }}</label>
                             </td>
+
                             @if ($item->color == NULL)
                             <td class="col-md-1">
                                 <label>...</label>
