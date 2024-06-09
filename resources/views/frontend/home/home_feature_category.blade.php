@@ -21,7 +21,7 @@ $categories = App\Models\Category::orderBy('category_name', 'ASC')->get();
                     <figure class="img-hover-scale overflow-hidden">
 
                         <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">
-                            <img src="{{ asset ($category->category_image)}}" alt="" />
+                            <img src="{{ asset ($category->category_image)}}" style="width: 80px; height:90px;" alt="" />
                         </a>
 
                     </figure>
