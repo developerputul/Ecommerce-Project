@@ -27,7 +27,7 @@ class AllUserController extends Controller
     public function UserOrder(){
 
         $id = Auth::user()->id;
-        $orders = Order::where('user_id',$id)->orderBy('id', 'DESC')->get();
+        $orders = Order::where('user_id',$id)->orderBy('id','DESC')->get();
         return view('frontend.userdashboard.user_order',compact('orders'));
 
     } // End Method
@@ -36,7 +36,7 @@ class AllUserController extends Controller
 
         $order = Order::with('division','district','state','user')->where('id',$order_id)
         ->where('user_id',Auth::id())->first();
-        $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+        $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id','DESC')->get();
 
         return view('frontend.order.order_details',compact('order','orderItem'));
 
