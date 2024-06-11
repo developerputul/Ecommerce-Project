@@ -18,8 +18,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
-
-
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Frontend\IndexController;
@@ -83,18 +83,17 @@ Route::middleware(['auth', 'role:admin'])->group(function(){
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('update.password');
  });
 
+
+
 //Vendor Dashboard routes
 Route::middleware(['auth', 'role:vendor'])->group(function(){
 
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
     Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
-
     Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
     Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
-
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
-
 
       //Vendor add Product All routes
   Route::controller(VendorProductController::class)->group(function(){
@@ -110,16 +109,20 @@ Route::middleware(['auth', 'role:vendor'])->group(function(){
     Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
     Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
 
-
     Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+});
 
-
+//All Brand Route
+Route::controller(VendorOrderController::class)->group(function(){
+    Route::get('vendor/order', 'VendorOrder')->name('vendor.order');
 
 });
 
 
+}); // End Vendor Group Middleware
 
-}); // end group middleware
+
+
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
@@ -130,8 +133,9 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 
  Route::middleware(['auth', 'role:admin'])->group(function(){
-    //All Brand Route
- Route::controller(BrandController::class)->group(function(){
+
+//All Brand Route
+    Route::controller(BrandController::class)->group(function(){
     Route::get('all/brand', 'AllBrand')->name('all.brand');
     Route::get('add/brand', 'AddBrand')->name('add.brand');
 
@@ -279,10 +283,16 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         Route::get('delete/state/{id}', 'DeleteState')->name('delete.state');
 
         Route::get('/district/ajax/{division_id}', 'GetDistrict');
+    });
+
+    //Admin Order All Route
+    Route::controller(OrderController::class)->group(function(){
+        Route::get('pending/order', 'PendingOrder')->name('pending.order');
 
     });
 
 }); //Admin End middleware
+
 
 
 //frontend product Details All Route
