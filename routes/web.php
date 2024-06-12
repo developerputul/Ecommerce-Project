@@ -298,6 +298,8 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         Route::get('confirm/processing/{order_id}', 'ConfirmToProcessing')->name('confirm-processing');
         Route::get('processing/delivered/{order_id}', 'ProcessingToDelivered')->name('processing-delivered');
 
+        Route::get('admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+
     });
 
 }); //Admin End middleware
