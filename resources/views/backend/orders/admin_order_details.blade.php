@@ -1,82 +1,72 @@
-@extends('dashboard')
-@section('user')
+@extends('admin.admin_dashboard')
+@section('admin')
 
-
-<div class="page-header breadcrumb-wrap">
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-            <span></span> Order page
+<div class="page-content">
+    <!--breadcrumb-->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">Admin Order Details</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Admin Order Details</li>
+                </ol>
+            </nav>
         </div>
+        
     </div>
-</div>
-<div class="page-content pt-50 pb-50">
-<div class="container">
-<div class="row">
-<div class="col-lg-12 m-auto">
-    <div class="row">
-
-{{-- //Start Col md 3 menu --}}
-
-@include('frontend.body.dashboard_sidebar_menu')
-
-{{-- //End Col md 3 menu --}}
-
-
-        {{-- // Start Col Md 9 --}}
-        <div class="col-md-9">
-            <div class="row">
-
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header"><h4>Shipping Details</h4></div>
-                        <hr>
-                        <div class="card-body">
-                            <table class="table" style="background: #F4F6FA; font-weight:600;">
-                                <tr>
-                                    <th>Shipping Name:</th>
-                                    <th>{{ $order->name }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Shipping Phone:</th>
-                                    <th>{{ $order->phone }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Shipping Email:</th>
-                                    <th>{{ $order->email }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Shipping Address:</th>
-                                    <th>{{ $order->adress }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Division:</th>
-                                    <th>{{ $order->division->division_name }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Distract:</th>
-                                    <th>{{ $order->district->district_name }}</th>
-                                </tr>
-                                <tr>
-                                    <th>State:</th>
-                                    <th>{{ $order->state->state_name}}</th>
-                                </tr>
-                                <tr>
-                                    <th>Post Code:</th>
-                                    <th>{{ $order->post_code }}</th>
-                                </tr>
-                                <tr>
-                                    <th>Order Data:</th>
-                                    <th>{{ $order->order_date }}</th>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+    <!--end breadcrumb-->
+    <hr/>
+    
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
+        <div class="col">
+            <div class="card">
+                <div class="card-header"><h4>Shipping Details</h4></div>
+                <hr>
+                <div class="card-body">
+                    <table class="table" style="background: #F4F6FA; font-weight:600;">
+                        <tr>
+                            <th>Shipping Name:</th>
+                            <th>{{ $order->name }}</th>
+                        </tr>
+                        <tr>
+                            <th>Shipping Phone:</th>
+                            <th>{{ $order->phone }}</th>
+                        </tr>
+                        <tr>
+                            <th>Shipping Email:</th>
+                            <th>{{ $order->email }}</th>
+                        </tr>
+                        <tr>
+                            <th>Shipping Address:</th>
+                            <th>{{ $order->adress }}</th>
+                        </tr>
+                        <tr>
+                            <th>Division:</th>
+                            <th>{{ $order->division->division_name }}</th>
+                        </tr>
+                        <tr>
+                            <th>Distract:</th>
+                            <th>{{ $order->district->district_name }}</th>
+                        </tr>
+                        <tr>
+                            <th>State:</th>
+                            <th>{{ $order->state->state_name}}</th>
+                        </tr>
+                        <tr>
+                            <th>Post Code:</th>
+                            <th>{{ $order->post_code }}</th>
+                        </tr>
+                        <tr>
+                            <th>Order Data:</th>
+                            <th>{{ $order->order_date }}</th>
+                        </tr>
+                    </table>
                 </div>
-        {{-- // End col-md-6 --}}
-
-
-        <div class="col-md-6">
+            </div>
+        </div>
+        <div class="col">
             <div class="card">
                 <div class="card-header"><h4>Order Details
                 <span class="text-danger">Invoice: {{ $order->invoice_no }}</span></div></h4>
@@ -107,34 +97,23 @@
                             <th>Order Amount:</th>
                             <th>${{ $order->amount }}</th>
                         </tr>
+
                         <tr>
                             <th>Order Status:</th>
-                            <th> <span class="badge rounded-pill bg-warning">{{ $order->status }}</span></th>
+                            <th> <span class="badge rounded-pill bg-info">{{ $order->status }}</span></th>
                         </tr>
+                        <tr>
+                            <th></th>
+                            <th><a href="" class="btn btn-block btn-success">Confirm Order</a> </th>
+                        </tr>
+
                     </table>
                 </div>
             </div>
         </div>
-
-            {{-- // End col-md-6 --}}
-            </div> {{-- // End row --}}
-            
-            </div>
-        {{-- // End Col Md 9 --}}
-
-
-
-        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-1">
+        <div class="col">
             <div class="table-responsive">
                 <table class="table" style="font-weight: 600;">
                     <tbody>
@@ -222,27 +201,12 @@
                     </tbody>
                 </table>
             </div>
-
         </div>
-
-        {{-- Start Return Order Option --}}
-
-        @if($order->status !== 'deliverd')
-
-        @else   
-       
-        <div class="form-group" style="font-weight: 600; font-size: initial; color: #000000;">
-
-            <label>Order Return Reason</label>
-            <textarea name="return_reason" class="form-control"></textarea>
-        </div>
-        <button type="submit" class="btn-sm btn-danger">Order Return</button>
-        @endif
-        {{-- End Return Order Option --}}
-
-
-
+        
     </div>
+
+
 </div>
+
 
 @endsection
