@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
+use App\Http\Controllers\Backend\ReturnController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Frontend\IndexController;
@@ -147,8 +148,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 });
 
-
-    //All category Route
+//All category Route
  Route::controller(CategoryController::class)->group(function(){
     Route::get('all/category', 'AllCategory')->name('all.category');
     Route::get('add/category', 'AddCategory')->name('add.category');
@@ -300,6 +300,14 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
         Route::get('admin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
 
+    });
+
+    //Return Order All Route
+    Route::controller(ReturnController::class)->group(function(){
+        Route::get('return/request', 'ReturnRequest')->name('return.request');
+        Route::get('return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
+       
+    
     });
 
 }); //Admin End middleware
