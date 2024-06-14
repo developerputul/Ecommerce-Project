@@ -184,7 +184,7 @@
             <ul>
                 <li> <a href="{{ route ('return.request')}}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
                 </li>
-                <li> <a href="{{ route ('admin.confirmed.order')}}"><i class="bx bx-right-arrow-alt"></i>Complate Request</a>
+                <li> <a href="{{ route ('complate.return.request')}}"><i class="bx bx-right-arrow-alt"></i>Complate Request</a>
                 </li>
             </ul>
         </li>

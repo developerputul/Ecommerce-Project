@@ -26,4 +26,12 @@ class ReturnController extends Controller
 
         return redirect()->back()->with($notification);
     } // End Method
+
+    public function ComplateReturnRequest(){
+
+        $orders = Order::where('return_order',2)->orderBy('id','DESC')->get();
+        return view('backend.returnOrder.complate_return_request', compact('orders'));
+
+    } // End Method
+    
 }
