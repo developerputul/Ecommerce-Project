@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -41,6 +42,22 @@ class ReportController extends Controller
 
         return view('backend.report.report_by_year',compact('orders','year'));
 
+    } // End Mehtod
+
+    public function OrderByUser(){
+        $users = User::where('role','user')->latest()->get();
+
+        return view('backend.report.report_by_user',compact('users'));
 
     } // End Mehtod
+
+    public function SearchByUser(Request $request){
+
+        $users = $request->user;
+        $orders = Order::where('user_id',$users)->latest()->get();
+
+        return view('backend.report.report_by_user_show',compact('users','orders'));
+
+
+    } // End Method
 }

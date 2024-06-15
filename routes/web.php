@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ActiveUserController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Frontend\IndexController;
@@ -323,6 +324,17 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         Route::post('search/by/date', 'SearchByDate')->name('search-by-date');
         Route::post('search/by/month', 'SearchByMonth')->name('search-by-month');
         Route::post('search/by/year', 'SearchByYear')->name('search-by-year');
+
+
+        Route::get('order/by/user', 'OrderByUser')->name('order.by.user');
+        Route::post('search/by/user', 'SearchByUser')->name('search-by-user');
+    });
+
+
+    //Active User And Vendor All Route
+    Route::controller(ActiveUserController::class)->group(function(){
+        Route::get('all/user', 'AllUser')->name('all-user');
+        Route::get('all/vendor', 'AllVendor')->name('all-vendor');
        
     });
 
