@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\Backend\BlogController;
 
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Frontend\IndexController;
@@ -317,7 +318,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         Route::get('complate/return/request', 'ComplateReturnRequest')->name('complate.return.request');
     });
 
-
+ 
     //Report All Route
     Route::controller(ReportController::class)->group(function(){
         Route::get('report/view', 'ReportView')->name('report.view');
@@ -335,6 +336,15 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     Route::controller(ActiveUserController::class)->group(function(){
         Route::get('all/user', 'AllUser')->name('all-user');
         Route::get('all/vendor', 'AllVendor')->name('all-vendor');
+       
+    });
+
+    //admin Blog Category All Route
+    Route::controller(BlogController::class)->group(function(){
+        Route::get('admin/blog/category', 'AdminBlogCategory')->name('admin.blog.category');
+        Route::get('admin/add/blog/category', 'AdminAddBlogCategory')->name('admin.add.blog.category');
+        Route::post('admin/store/blog/category', 'AdminStoreBlogCategory')->name('admin.store.blog.category');
+       
        
     });
 

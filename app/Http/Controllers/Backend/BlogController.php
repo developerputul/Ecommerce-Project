@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\BlogCategory;
+use App\Models\BlogPost;
+use Carbon\Carbon;
+use Intervention\Image\Image;
+
+class BlogController extends Controller
+{
+    public function AdminBlogCategory(){
+
+        $blogcategories = BlogCategory::latest()->get();
+        return view('backend.blog.category.blogcategory_all',compact('blogcategories'));
+
+    } // End Method
+
+    public function AdminAddBlogCategory(){
+        return view('backend.blog.category.blogcategory_add');
+
+    } // End Method
+
+    public function AdminStoreBlogCategory(Request $request){
+
+        BlogCategory::insert([
+            'blog_category_name' => $request->blog_category_name,
+            'blog_category_slug' => strtolower(str_replace(' ', '-',$request->blog_category_name)),
+            'created_at' => Carbon::now(),
+
+        ]);
+
+       $notification = array(
+            'message' => ' Blog Category Inserted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.blog.category')->with($notification);
+
+    }// End Method
+}
