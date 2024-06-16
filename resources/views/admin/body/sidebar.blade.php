@@ -223,7 +223,7 @@
             </a>
             <ul>
                 <li><a href="{{route ('admin.blog.category')}}"><i class="bx bx-right-arrow-alt"></i>All Blog Category</a></li>
-                <li><a href="{{route ('all-vendor')}}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a></li>
+                <li><a href="{{route ('admin.blog.post')}}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a></li>
                 
             </ul>
         </li>

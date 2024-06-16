@@ -45,9 +45,10 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         return view('backend.category.category_edit', compact('category'));
     } // End Method
-
+ 
 
     public function UpdateCategory(Request $request){
+
         $category_id = $request->id;
         $old_image = $request->old_image;
 
@@ -69,7 +70,7 @@ class CategoryController extends Controller
         ]);
 
        $notification = array(
-            'message' => 'Category Updated With Successfully',
+            'message' => 'Category Updated With Image Successfully',
             'alert-type' => 'success'
         );
 

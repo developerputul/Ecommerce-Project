@@ -59,8 +59,7 @@
                   <div class="mb-3">
                     <label for="inputProductDescription" class="form-label">Long Description</label>
                     <textarea name="long_desc" id="ck-editor" class="form-control text-editor" style="height: 50vh"
-											placeholder="{{ __('Enter Details') }}"
-											></textarea>
+                    placeholder="{{ __('Enter Details') }}"></textarea>
                   </div>
 
 
