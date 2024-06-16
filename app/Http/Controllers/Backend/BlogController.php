@@ -209,5 +209,15 @@ class BlogController extends Controller
 
     } // End Method
 
+    ////////// Frontend Blog All Method ////////////////
+
+    public function AllBlog(){
+
+        $blogcategories = BlogCategory::latest()->get();
+        $blogpost = BlogPost::latest()->get();
+        return view('frontend.blog.home_blog',compact('blogcategories','blogpost'));
+
+    } // End Method
+
 
 }

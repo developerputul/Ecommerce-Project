@@ -372,14 +372,12 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 
 //frontend product Details All Route
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
 
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
-
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
 //Product View Modal Ajax
@@ -410,8 +408,10 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 //Checkout Page Route
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
-  //Cart All Route
+
+////////////Cart All Route//////////////
   Route::controller(CartController::class)->group(function(){
+
     Route::get('/mycart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
@@ -419,11 +419,21 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
 
-//// User All Route /////
+////Frontend Blog Post All Route//////////
+    Route::controller(BlogController::class)->group(function(){
+
+        Route::get('/blog', 'AllBlog')->name('home.blog');
+        
+    });
+
+
+//////////////// User All Route ///////////////
+
 Route::middleware(['auth','role:user'])->group(function() {
 //Wishlist All Route
+
     Route::controller(WishlistController::class)->group(function(){
-        
+
         Route::get('/wishlist', 'AllWishlist')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishlistProduct');
         Route::get('/wishlist-remove/{id}', 'WishlistRemove');
