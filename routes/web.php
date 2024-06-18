@@ -366,6 +366,12 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         
     });
 
+    ////Admin Review All Route//////////
+    Route::controller(ReviewController::class)->group(function(){
+        Route::get('/pending/review', 'PendingReview')->name('pending.review');
+    });
+
+
 
 
 });  //Admin End middleware
@@ -432,9 +438,7 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
 
 ////Frontend Blog Post All Route//////////
     Route::controller(ReviewController::class)->group(function(){
-
         Route::post('/store/review', 'StoreReview')->name('store.review');
-        
     });
 
 

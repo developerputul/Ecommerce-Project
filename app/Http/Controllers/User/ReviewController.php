@@ -35,4 +35,12 @@ class ReviewController extends Controller
         return redirect()->back()->with($notification); 
 
     } // End Method
+
+
+    public function PendingReview(){
+
+        $review = Review::where('status',0)->orderBy('id', 'DESC')->get();
+        return view('backend.review.pending_view',compact('review'));
+
+    } // End Method
 }
