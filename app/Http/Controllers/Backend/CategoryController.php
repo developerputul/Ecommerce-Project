@@ -85,7 +85,7 @@ class CategoryController extends Controller
             ]);
 
            $notification = array(
-                'message' => 'Category Updated Without Successfully',
+                'message' => 'Category Updated Without Image Successfully',
                 'alert-type' => 'success'
             );
 

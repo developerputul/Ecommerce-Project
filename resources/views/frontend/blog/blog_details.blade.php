@@ -1,6 +1,10 @@
 @extends('frontend.master_dashboard')
 @section('main')
 
+@section('title')
+    {{ $blogdetails->post_title }}
+@endsection
+
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
@@ -32,7 +36,7 @@
     <div class="single-header-meta">
         <div class="entry-meta meta-1 font-xs mt-15 mb-15">
             <a class="author-avatar" href="#">
-                <img class="img-circle" src="assets/imgs/blog/author-1.png" alt="" />
+                <img class="img-circle" src="{{ asset('frontend/assets/imgs/blog/author-1.png') }}" alt="" />
             </a>
             <span class="post-by">By <a href="#">Admin</a></span>
             <span class="post-on has-dot">{{ Carbon\Carbon::parse($blogdetails->created_at)->diffForHumans() }}</span>

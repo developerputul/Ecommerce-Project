@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
+@php
+     $seo = App\Models\Seo::find(1);
+@endphp
+
 <head>
     <meta charset="utf-8" />
-    <title>Easy Shop Online</title>
+    <title> @yield('title')</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="description" content="" />
-
+    <meta name="title" content="{{ $seo->meta_title }}" />
+    <meta name="auto" content="{{ $seo->meta_auto }}" />
+    <meta name="keyword" content="{{ $seo->meta_keyword }}" />
+    <meta name="description" content="{{ $seo->meta_description }}" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-
-    
     
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
