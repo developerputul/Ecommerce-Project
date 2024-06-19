@@ -128,6 +128,12 @@ Route::controller(VendorOrderController::class)->group(function(){
 
 });
 
+  ////Vendor Review All Route//////////
+  Route::controller(ReviewController::class)->group(function(){
+    Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
+   
+});
+
 
 }); // End Vendor Group Middleware
 
@@ -373,9 +379,6 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
         Route::get('/publish/review', 'PublishReview')->name('publish.review');
         Route::get('/review/delete/{id}', 'ReviewDelete')->name('review.delete');
     });
-
-
-
 
 });  //Admin End middleware
 

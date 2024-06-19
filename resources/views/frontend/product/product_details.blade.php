@@ -14,14 +14,17 @@
         </div>
     </div>
     </div>
+
   <div class="container mb-30">
     <div class="row">
         <div class="col-xl-10 col-lg-12 m-auto">
             <div class="product-detail accordion-detail">
+
                 <div class="row mb-50 mt-30">
                     <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                         <div class="detail-gallery">
                             <span class="zoom-icon"><i class="fi-rs-search"></i></span>
+
                             <!-- MAIN SLIDES -->
                             <div class="product-image-slider">
                                 @foreach ($multiimage as $image)
@@ -30,9 +33,9 @@
                                         <img src="{{ asset ($image->photo_name)}}" alt="product image" />
                                     </figure>
                                 @endforeach
-
                             </div>
                             <!-- THUMBNAILS -->
+
                             <div class="slider-nav-thumbnails">
                                 @foreach ($multiimage as $image)
                                 <div><img src="{{ asset ($image->photo_name)}}" alt="product image" /></div>
@@ -55,15 +58,14 @@
                             <div class="product-detail-rating">
                                 <div class="product-rate-cover text-end">
 
-                                @php
-                                
-                                $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
-
-                                $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
-                                @endphp
+                    @php
+                    $reviewcount = App\Models\Review::where('product_id',$product->id)->where('status',1)->latest()->get();
+                    $avarage = App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
+                    @endphp
 
 
-                                    <div class="product-rate d-inline-block">
+                                <div class="product-rate d-inline-block">
+                    
                                     @if ($avarage == 0 )
                                       
                                         @elseif ($avarage == 1 || $avarage < 2) 
@@ -78,7 +80,6 @@
                                         <div class="product-rating" style="width: 100%"></div>
                                      @endif
                                     </div>
-
 
                                     <span class="font-small ml-5 text-muted"> ({{ count($reviewcount) }} reviews)</span>
                                 </div>
@@ -185,10 +186,13 @@
                     </ul>
                 </div>
 
-                        </div>
-                        <!-- Detail Info -->
-                    </div>
-                </div>
+            </div>
+         <!-- Detail Info -->
+        </div>
+    </div>
+
+
+
                 <div class="product-info">
                     <div class="tab-style3">
                         <ul class="nav nav-tabs text-uppercase">
