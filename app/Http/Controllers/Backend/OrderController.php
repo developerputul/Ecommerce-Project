@@ -74,15 +74,11 @@ class OrderController extends Controller
     public function ProcessingToDelivered($order_id){
 
         $product = OrderItem::where('order_id',$order_id)->get();
-
         foreach($product as $item){
-
             Product::where('id',$item->product_id)->update(['product_qty' => DB::raw('product_qty-'.$item->qty) ]);
         }
 
-
         Order::findOrFail($order_id)->update(['status' => 'deliverd']);
-
         $notification = array(
             'message' => 'Order Deliverd Successfully',
             'alert-type' => 'success'
@@ -90,6 +86,8 @@ class OrderController extends Controller
         return redirect()->route('admin.delivered.order')->with($notification);
 
     } // End Method
+
+
 
     public function AdminInvoiceDownload($order_id){
 

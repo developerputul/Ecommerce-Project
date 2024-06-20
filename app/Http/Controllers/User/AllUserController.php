@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use PhpParser\Node\Expr\FuncCall;
 
 class AllUserController extends Controller
 {
@@ -81,7 +82,30 @@ class AllUserController extends Controller
 
         $orders = Order::where('user_id', Auth::id())->where('return_reason', '!=',NULL)->orderBy('id', 'DESC')->get();
         return view('frontend.order.return_order_view',compact('orders'));
+    } // End Method
 
+    public function UserTrackOrder(){
 
+        return view('frontend.userdashboard.user_track_order');
+
+    }// End Method
+
+    public function OrderTracking(Request $request){
+
+        $invoice = $request->code;
+        $track = Order::where('invoice_no',$invoice)->first();
+
+        if($track){
+            return view('frontend.tracking.tracking_order',compact('track'));
+        }else{
+
+            $notification = array(
+                'message' => 'Invoice Code is Invalid',
+                'alert-type' => 'error'
+            );
+    
+            return redirect()->back()->with($notification); 
+
+        }
     } // End Method
 }

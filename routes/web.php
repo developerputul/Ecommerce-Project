@@ -223,6 +223,9 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     //Product Stock Route
     Route::get('product/stock', 'ProductStock')->name('product.stock');
+
+
+
 });
 
     //All Slider Route
@@ -513,6 +516,11 @@ Route::middleware(['auth','role:user'])->group(function() {
         Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
         
         Route::get('/return/order/page', 'returnOrderPage')->name('return.order.page');
+
+        // Order Traking Route
+
+        Route::get('/user/track/order', 'UserTrackOrder')->name('user.track.order');
+        Route::post('/order/tracking', 'OrderTracking')->name('order.tracking');
        
     });
 

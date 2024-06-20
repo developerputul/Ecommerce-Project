@@ -23,7 +23,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="#track-orders"><i class="fi-rs-shopping-cart-check mr-10">
+                <a class="nav-link {{ ($route == 'user.track.order')? 'active': '' }}" href="{{ route('user.track.order') }}"><i class="fi-rs-shopping-cart-check mr-10">
                     </i>Track Your Order</a>
             </li>
 
