@@ -220,6 +220,9 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
     Route::get('product/inactive/{id}', 'ProductInactive')->name('product.inactive');
     Route::get('product/active/{id}', 'ProductActive')->name('product.active');
     Route::get('delete/product/{id}', 'ProductDelete')->name('delete.product');
+
+    //Product Stock Route
+    Route::get('product/stock', 'ProductStock')->name('product.stock');
 });
 
     //All Slider Route
@@ -274,7 +277,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
-    //SHipping District All Route
+    //Shipping District All Route
     Route::controller(ShippingAreaController::class)->group(function(){
         Route::get('all/district', 'AllDistrict')->name('all.district');
         Route::get('add/district', 'AddDistrict')->name('add.district');
@@ -287,7 +290,7 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
     });
 
-    //SHipping State All Route
+    //Shipping State All Route
     Route::controller(ShippingAreaController::class)->group(function(){
         Route::get('all/state', 'AllState')->name('all.state');
         Route::get('add/state', 'AddState')->name('add.state');

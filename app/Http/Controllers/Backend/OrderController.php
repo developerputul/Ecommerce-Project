@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\session; 
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -71,8 +73,16 @@ class OrderController extends Controller
 
     public function ProcessingToDelivered($order_id){
 
+        $product = OrderItem::where('order_id',$order_id)->get();
+
+        foreach($product as $item){
+
+            Product::where('id',$item->product_id)->update(['product_qty' => DB::raw('product_qty-'.$item->qty) ]);
+        }
+
+
         Order::findOrFail($order_id)->update(['status' => 'deliverd']);
-        
+
         $notification = array(
             'message' => 'Order Deliverd Successfully',
             'alert-type' => 'success'

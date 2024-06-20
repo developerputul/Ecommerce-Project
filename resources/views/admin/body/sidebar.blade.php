@@ -259,7 +259,17 @@
 
                 <li><a href="{{route ('seo.setting')}}"><i class="bx bx-right-arrow-alt">
                     </i>Seo Setting</a></li>
-                
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Stock Manage</div>
+            </a>
+            <ul>
+                <li><a href="{{route ('product.stock')}}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a></li>
             </ul>
         </li>
 
