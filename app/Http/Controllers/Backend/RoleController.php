@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -68,6 +69,80 @@ class RoleController extends Controller
         );
         return redirect()->back()->with($notification);
 
+    } // End Method
 
+    ///////////All Roles Method/////////
+
+    public function AllRoles(){
+
+        $roles = Role::all();
+        return view('backend.pages.role.all_role',compact('roles'));
+
+    } // End Method
+
+    public function AddRoles(){
+
+        return view('backend.pages.role.add_role');
+    } // End Method
+
+    public function StoreRoles(Request $request){
+
+        $role = Role::create([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Roles Inserted Successfully',
+            'alert-type' =>'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+
+    } // End Method
+
+    public function EditRoles($id){
+
+        $roles = Role::findOrFail($id);
+        return view('backend.pages.role.edit_role',compact('roles'));
+
+    } // End Method
+
+    public function UpdateRoles(Request $request){
+
+        $role_id = $request->id;
+
+        Role::findOrFail($role_id)->update([
+            'name' => $request->name,
+        ]);
+
+        $notification = array(
+            'message' => 'Roles Updated Successfully',
+            'alert-type' =>'success'
+        );
+
+        return redirect()->route('all.roles')->with($notification);
+
+    } // End Method
+
+    public function DeleteRoles($id){
+
+        Role::findOrFail($id)->delete();
+         
+        $notification = array(
+            'message' => 'Roles Deleted Successfully',
+            'alert-type' =>'success'
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    /////Add Role Permission Mehtod
+
+    public function AddRolesPermission(){
+
+        $roles = Role::all();
+        $permissions = Permission::all();
+        $permission_groups = User::getpermissionGroups();
+
+        return view('backend.pages.role.add_roles_permission',compact('roles','permissions','permission_groups'));
     } // End Method
 }
