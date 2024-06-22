@@ -288,6 +288,8 @@
                 </li>
                 <li> <a href="{{ route('add.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>Roles in Permission</a>
                 </li>
+                <li> <a href="{{ route('all.roles.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Roles in Permission</a>
+                </li>
                 
             </ul>
         </li>

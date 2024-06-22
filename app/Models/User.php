@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+
 
 class User extends Authenticatable
 {
@@ -60,6 +62,20 @@ class User extends Authenticatable
             $permissions = DB::table('permissions')->select('name','id')->where('group_name',$group_name)->get();
 
               return $permissions;
+
+    } // End Method
+
+    public static function roleHasPermissions($role,$permissions){
+
+        $hasPermission = true;
+
+        foreach($permissions as $permission){
+            if (!$role->hasPermissionTo($permission->name)) {
+                $hasPermission = false;
+                return $hasPermission;
+            }
+            return $hasPermission;
+        }
 
     } // End Method
 }
