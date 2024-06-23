@@ -48,9 +48,8 @@
                           <td>{{$item->email}}</td>
                           <td>{{$item->phone}}</td>
                           <td>
-                            
                             @foreach ($item->roles as $role)
-                    <span class="badge badge-pill bg-danger">{{ $item->name }}</span>            
+                        <span class="badge badge-pill bg-danger">{{ $role->name }}</span>        
                             @endforeach
                           </td>
 

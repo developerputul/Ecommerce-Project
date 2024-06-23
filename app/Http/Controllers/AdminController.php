@@ -184,6 +184,7 @@ class AdminController extends Controller
         return redirect()->route('all.admin')->with($notification);
     } // End Method
 
+  
     public function EditAdminRole($id){
 
         $user = User::findOrFail($id);
