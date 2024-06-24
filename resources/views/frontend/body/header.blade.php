@@ -162,10 +162,10 @@
 
 
                     
-                    <div class="header-action-icon-2">
-                        <a href="page-account.html">
-                            <img class="svgInject" alt="Nest" src="{{ asset ('frontend/assets/imgs/theme/icons/icon-user.svg')}}" />
-                        </a>
+            <div class="header-action-icon-2">
+                <a href="page-account.html">
+                    <img class="svgInject" alt="Nest" src="{{ asset ('frontend/assets/imgs/theme/icons/icon-user.svg')}}" />
+                </a>
 
                     @auth
                     <a href="page-account.html"><span class="lable ml-0">Account</span></a>
@@ -236,17 +236,21 @@
 
                             <ul>
                                 @foreach ($categories as $item)
+                                @if ($loop->index < 5)
                                 <li>
-                                    <a href="shop-grid-right.html"><img src="{{ asset ($item->category_image)}}" alt="" />{{$item->category_name}}</a>
+                                    <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"><img src="{{ asset ($item->category_image)}}" alt="" />{{$item->category_name}}</a>
                                 </li>
+                                @endif
                                 @endforeach
                             </ul>
 
                             <ul class="end">
                             @foreach ($categories as $item)
+                            @if ($loop->index > 4)
                             <li>
-                                <a href="shop-grid-right.html"><img src="{{ asset ($item->category_image)}}" alt="" />{{$item->category_name}}</a>
+                                <a href="{{ url('product/category/'.$item->id.'/'.$item->category_slug) }}"><img src="{{ asset ($item->category_image)}}" alt="" />{{$item->category_name}}</a>
                             </li>
+                            @endif
                             @endforeach
 
                             </ul>

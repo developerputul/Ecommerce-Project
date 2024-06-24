@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\session;
 use Stripe\Charge;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
+use App\Models\User;
+use App\Notifications\OrderComplete;
+use Illuminate\Support\Facades\Notification;
 
 class StripeController extends Controller
 {
@@ -121,6 +124,8 @@ class StripeController extends Controller
 //////Cash On Delivary Method/////////////
     public function CashOrder(Request $request){
 
+        $user = User::where('role','admin')->get();
+
         if(Session::has('coupon')){
             $total_amount = Session::get('coupon')['total_amount'];
         }else{
@@ -182,6 +187,7 @@ class StripeController extends Controller
                  'alert-type' => 'success'
              );
      
+             Notification::send($user, new OrderComplete($request->name)); 
              return redirect()->route('dashboard')->with($notification); 
 
 

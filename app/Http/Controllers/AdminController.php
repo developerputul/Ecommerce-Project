@@ -9,6 +9,8 @@ use PhpParser\Node\Expr\FuncCall;
 // use Illuminate\Support\Arr;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\VendorApprovedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -108,6 +110,7 @@ class AdminController extends Controller
     } //end method
 
     public function ActiveVendorApprove(Request $request){
+
         $vendor_id = $request->id;
         $user = User::findOrFail($vendor_id)->update([
             'status' => 'active',
@@ -116,6 +119,8 @@ class AdminController extends Controller
             'message' => 'Vendor Active Successfully',
             'alert-type' => 'success'
         );
+        $vuser = User::where('role','vendor')->get();
+        Notification::send($vuser, new VendorApprovedNotification($request)); 
 
         return redirect()->route('active.vendor')->with($notification);
     } //end method

@@ -49,6 +49,7 @@ class SliderController extends Controller
     } // end Method EditSlider
 
     public function UpdateSlider(Request $request){
+        
         $slider_id = $request->id;
         $old_image = $request->old_image;
 
