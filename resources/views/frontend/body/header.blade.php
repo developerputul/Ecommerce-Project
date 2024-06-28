@@ -65,7 +65,7 @@
             <div class="header-wrap">
 
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="{{ asset ($setting->logo) }}" alt="logo" /></a>
+                    <a href="index.html"><img src="{{ asset ($setting?->logo) }}" alt="logo" /></a>
                 </div>
 
                     <div class="header-right">
@@ -308,7 +308,7 @@
 
             <div class="hotline d-none d-lg-flex">
                 <img src="{{ asset ('frontend/assets/imgs/theme/icons/icon-headphone.svg')}}" alt="hotline" />
-                <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
+                <p>{{ $setting?->support_phone }}<span>24/7 Support Center</span></p>
             </div>
             <div class="header-action-icon-2 d-block d-lg-none">
                 <div class="burger-icon burger-icon-white">
