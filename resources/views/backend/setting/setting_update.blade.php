@@ -29,7 +29,7 @@
                             <form method="post" action="{{ route('site.setting.update') }}" enctype="multipart/form-data" >
                             @csrf
 
-                            <input type="hidden" name="id" value="{{ $setting->id }}">
+                            <input type="hidden" name="id" value="{{ $setting?->id }}">
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="support_phone"
-                                     value="{{$setting->support_phone}}" />
+                                     value="{{$setting?->support_phone}}" />
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" class="form-control" name="phone_one" 
-                                    value="{{ $setting->phone_one }}" />
+                                    value="{{ $setting?->phone_one }}" />
                                 </div>
                             </div>
 
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="email" name="email" class="form-control" 
-                                    value="{{ $setting->email }}" />
+                                    value="{{ $setting?->email }}" />
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="company_address" class="form-control" 
-                                    value="{{ $setting->company_address }}" />
+                                    value="{{ $setting?->company_address }}" />
                                 </div>
                             </div>
 
@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="facebook" class="form-control" 
-                                    value="{{ $setting->facebook }}" />
+                                    value="{{ $setting?->facebook }}" />
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="twitter" class="form-control" 
-                                    value="{{ $setting->twitter }}" />
+                                    value="{{ $setting?->twitter }}" />
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="youtube" class="form-control" 
-                                    value="{{ $setting->youtube }}" />
+                                    value="{{ $setting?->youtube }}" />
                                 </div>
                             </div>
 
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="text" name="copyright" class="form-control" 
-                                    value="{{ $setting->copyright }}" />
+                                    value="{{ $setting?->copyright }}" />
                                 </div>
                             </div>
 
@@ -124,7 +124,7 @@
                                     <h6 class="mb-0"></h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
-                            <img id="showImage" src="{{ asset($setting->logo) }}" alt="Admin" style="width:100px; height:100px;">
+                            <img id="showImage" src="{{ asset($setting?->logo) }}" alt="Admin" style="width:100px; height:100px;">
                                 </div>
                             </div>
 
